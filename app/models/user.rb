@@ -4,5 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, presence: true
+  alphabet_number_mix_8 = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,}\z/i
+
+  with_options presence: true do
+    validates :nickname
+    validates :password, format: { with: alphabet_number_mix_8 }
+  end
 end
