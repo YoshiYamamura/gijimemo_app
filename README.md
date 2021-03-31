@@ -29,16 +29,13 @@ Things you may want to cover:
 |nickname          |string|null: false              |
 |encrypted_password|string|null: false              |
 |email             |string|null: false, unique: true|
-|family_name       |string|                         |
-|first_name        |string|                         |
-|belonging         |string|                         |
-|self_introduction |text  |                         |
 
 ### Association
 - has_many :meetings
 - has_many :access_permits
 - has_many :transcripts
 - has_many :reactions
+- has_one  :profile
 
 ## meetingsテーブル
 |Column      |Type      |Options                       |
@@ -86,3 +83,14 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to :meeting
+
+## profilesテーブル
+|Column           |Type  |Options                  |
+|-----------------|------|-------------------------|
+|family_name      |string|                         |
+|first_name       |string|                         |
+|belonging        |string|                         |
+|self_introduction|text  |                         |
+
+### Association
+- belongs_to :user

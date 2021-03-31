@@ -1,0 +1,45 @@
+.session-wrapper {
+  background-image: image-url('sign_in.png');
+  background-color: #29b1cc;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100vh;
+  padding:50px;
+}
+
+.app-title {
+  color:#ffffff;
+  font-size: 26px;
+  margin-bottom: 20vh;
+}
+
+.session-main {
+  margin-left: auto;
+  width: 300px;
+}
+.session-main a{
+  text-decoration: none;
+  color:black;
+}
+.session-main a:hover {
+  color:#ffffff;
+}
+
+.session-form-group {
+  margin-bottom: 20px;
+}
+
+.session-form-text {
+  font-size: 18px;
+}
+
+.session-input-form {
+  width: 270px;
+  height: 30px;
+  margin: 10px; 
+}
+
+.session-actions {
+  margin: 30px 0;
+  text-align: center;
+}

@@ -1,0 +1,37 @@
+.registration-wrapper {
+  background-color: lightblue;
+  height: 100vh;
+  text-align: center;
+}
+.registration-wrapper a{
+  text-decoration: none;
+  color: black;
+}
+.registration-wrapper a:hover {
+  color: blue;
+}
+
+.registration-title {
+  padding:30px;
+  font-size: 26px;
+}
+
+.registration-form-group {
+  margin-bottom: 20px;
+}
+
+.registration-form-text {
+  font-size: 18px;
+}
+
+.registration-input-form {
+  width: 270px;
+  height: 30px;
+  margin: 10px; 
+}
+
+.registration-actions {
+  margin: 30px 0;
+  text-align: center;
+}
+

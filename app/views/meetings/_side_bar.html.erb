@@ -1,0 +1,22 @@
+<div class='side-header'>
+  <div class='header-name'>
+    <%= link_to current_user.nickname, "#" %>さん
+  </div>
+</div>
+<div class='side-menu'>
+  <div class='create-meeting-menu'>
+    <p>議事録作成メニュー</p>
+    <div class='create-meeting-btn'>
+      <%= link_to '新規作成', "#" %>
+    </div>
+    <div class='create-meeting-btn'>
+      <%= link_to '編集', "#" %>
+    </div>
+    <div class='create-meeting-btn'>
+      <%= link_to '削除', "#" %>
+    </div>
+  </div>
+  <div class='logout'>
+    <%= link_to 'ログアウトする', destroy_user_session_path, method: :delete %>
+  </div>
+</div>
