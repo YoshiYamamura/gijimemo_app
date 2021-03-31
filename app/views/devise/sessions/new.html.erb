@@ -1,23 +1,25 @@
-<h2>ログイン</h2>
-
-<%= form_with model: @user, url: user_session_path, class: 'session-main', local: true do |f| %>
-  <div class='form-group'>
-    <div class='form-text-wrap'>
-      <label class='form-text'>メールアドレス</label>
-    </div>
-    <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
+<div class='session-wrapper'>
+  <div class='app-title'>
+    議事録作成共有 Giji-memo
   </div>
-
-  <div class='form-group'>
-    <div class='form-text-wrap'>
-      <label class='form-text'>パスワード</label>
-    </div>
-    <%= f.password_field :password, autocomplete: 'current-password' %>
+  <div class='session-main'>
+    <%= form_with model: @user, url: user_session_path, class: 'session-form', local: true do |f| %>
+      <div class='session-form-group'>
+        <div>
+          <label class='session-form-text'>メールアドレス</label>
+        </div>
+        <%= f.email_field :email, class: 'session-input-form', autofocus: true, autocomplete: 'email' %>
+      </div>
+      <div class='session-form-group'>
+        <div>
+          <label class='session-form-text'>パスワード</label>
+        </div>
+        <%= f.password_field :password, class: 'session-input-form', autocomplete: 'current-password' %>
+      </div>
+      <div class='session-actions'>
+        <%= f.submit "ログインする" %>
+      </div>
+    <% end %>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class='actions'>
-    <%= f.submit "ログインする" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

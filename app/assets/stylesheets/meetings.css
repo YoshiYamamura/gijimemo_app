@@ -57,12 +57,12 @@
   border-left: 4px solid #104372;
 }
 
-.logout {
-
-}
 .logout a{
   text-decoration: none;
   color: black
+}
+.logout a:hover {
+  color: blue;
 }
 
 /*サイドバーここまで*/
