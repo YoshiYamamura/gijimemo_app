@@ -4,6 +4,10 @@
   </div>
   <div class='session-main'>
     <%= form_with model: @user, url: user_session_path, class: 'session-form', local: true do |f| %>
+      <div class='session-flash-message'>
+        <%= flash[:notice] %>
+        <%= flash[:alert] %>
+      </div>
       <div class='session-form-group'>
         <div>
           <label class='session-form-text'>メールアドレス</label>
