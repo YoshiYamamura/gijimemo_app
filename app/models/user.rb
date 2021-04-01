@@ -10,4 +10,6 @@ class User < ApplicationRecord
     validates :nickname
     validates :password, format: { with: alphabet_number_mix_8 }
   end
+
+  has_many :meetings
 end
