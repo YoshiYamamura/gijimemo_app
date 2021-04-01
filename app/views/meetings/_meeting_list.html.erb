@@ -1,0 +1,31 @@
+<% if meetings.present? %>
+  <div class='column-name'>
+    <div class='meeting-data-name'>
+      打合せ名称
+    </div>
+    <div class='meeting-data-date'>
+      打合せ日
+    </div>
+    <div class='meeting-data-created_at'>
+      最終更新日時
+    </div>
+  </div>
+  <% meetings.each do |meeting| %>
+    <div class='meeting-data'>
+      <div class='meeting-data-id'>
+        <%= meeting.id %>
+      </div>
+      <div class='meeting-data-name'>
+        <%= meeting.name %>
+      </div>
+      <div class='meeting-data-date'>
+        <%= meeting.meeting_date %>
+      </div>
+      <div class='meeting-data-created_at'>
+        <%= meeting.updated_at.strftime('%Y-%m-%d %H:%M') %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  現在、議事録はありません。
+<% end %>
