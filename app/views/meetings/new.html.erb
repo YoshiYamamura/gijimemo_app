@@ -1,0 +1,56 @@
+<div class='wrapper'>
+  <div class='side-bar'>
+    <%= render 'side_bar' %>
+  </div>
+  <div class='main-screen'>
+    <div class='meeting-title'>
+      議事録新規作成
+    </div>
+    <%= form_with model: @meeting, class: 'meeting-new-main', local: true do |f| %>
+      <%# render "shared/error_messages", resource: resource %>
+      <div class='upper'>
+        <div class='upper-left'>
+          <div class='meeting-form-group meeting-name'>
+            <div>
+              <label class='meeting-form-text'>打合せ名称（必須）</label>
+            </div>
+            <%= f.text_field :name, class: 'meeting-input-form', maxlength: '40', placeholder: '例：△△プロジェクト定例会議（第○回）',autofocus: true %>
+          </div>
+          <div class='meeting-form-group meeting-datetime'>
+            <div>
+              <label class='meeting-form-text'>打合せ日時</label>
+            </div>
+            <%= f.date_select :meeting_date, class: 'meeting-input-form', include_blank: true,
+                                            use_month_numbers: true, start_year: @today.year - 3, end_year: @today.year, selected: @today %>-
+            <%= f.time_select :meeting_time, class: 'meeting-input-form', include_blank: true %>
+          </div>
+          <div class='meeting-form-group meeting-place'>
+            <div>
+              <label class='meeting-form-text'>打合せ場所</label>
+            </div>
+            <%= f.text_field :place, class: 'meeting-input-form' %>
+          </div>
+        </div>
+        <div class='upper-right'>
+          <div class='meeting-form-group meeting-attendance'>
+            <div>
+              <label class='meeting-form-text'>出席者</label>
+            </div>
+            <%= f.text_area :attendance, class: 'meeting-input-form' %>
+          </div>
+        </div>
+      </div>
+      <div class='lower'>
+        <div class='meeting-form-group meeting-speech'>
+          <div>
+            <label class='meeting-form-text'>打合せ内容</label>
+          </div>
+          <%= f.text_area :speech, class: 'meeting-input-form' %>
+        </div>
+      </div>
+      <div class='meeting-new-actions'>
+        <%= f.submit "保存する" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,17 +1,20 @@
 class MeetingsController < ApplicationController
   before_action :authenticate_user!
 
+  require "date"
+
   def index
   end
 
   def new
     @meeting = Meeting.new
+    @today = Date.today
   end
 
   def create
     @meeting = Meeting.new(meeting_params)
     if @meeting.save
-      redirect_to root_path
+      redirect_to root_path, notice: "議事録 #{@meeting.name}を登録しました。"
     else
       render :new
     end

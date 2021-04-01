@@ -1,6 +1,12 @@
+.wrapper {
+  display: flex;
+}
+
 /*サイドバー*/
 .side-bar{
   width: 200px;
+  height: 100vh;
+  border-right: 4px ridge lightblue;
 }
 
 .side-header{
@@ -24,7 +30,7 @@
 .side-menu{
   height: calc(100vh - 80px);
   background-color: lightcyan;
-  padding: 0 20px;
+  padding: 20px;
   overflow: scroll;
 }
 
@@ -34,8 +40,8 @@
 
 .create-meeting-btn a{
   display: block;
-  width: 140px;
-  height: 25px;
+  width: 160px;
+  height: 50px;
   padding: 10px 5px;
   color: black;
   text-align: justify;
@@ -47,7 +53,7 @@
   border-right: 4px solid #104372;
   border-bottom: 4px solid #186294;
   border-left: 4px solid #cdebf3;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .create-meeting-btn a:hover {
@@ -65,4 +71,56 @@
   color: blue;
 }
 
-/*サイドバーここまで*/
+/*メイン画面*/
+.main-screen {
+  width: calc(100vw - 200px);
+  height: 100vh;
+  background-color:lightcyan;
+  padding: 30px;
+}
+
+.meeting-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.upper {
+  display: flex;
+}
+
+.upper-left {
+  width: 40vw;
+  margin-right: 30px;
+}
+
+.upper-right {
+  width: calc(100vw - 200px - 40vw - 90px);
+}
+
+.meeting-form-group {
+  margin-bottom: 10px;
+}
+
+.meeting-name .meeting-input-form, .meeting-place .meeting-input-form {
+  width: 100%;
+  height: 30px;
+}
+
+.meeting-datetime select {
+  height: 30px;
+}
+
+.meeting-attendance .meeting-input-form {
+  width: 100%;
+  height: 160px;
+}
+
+.meeting-speech .meeting-input-form {
+  width: 100%;
+  height: calc(100vh - 400px);
+  min-height: 100px;
+}
+.meeting-new-actions {
+  text-align: center;
+  padding-top: 10px;
+}
