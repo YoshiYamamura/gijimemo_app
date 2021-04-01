@@ -6,17 +6,22 @@
 <div class='side-menu'>
   <div class='create-meeting-menu'>
     <p>議事録作成メニュー</p>
-    <div class='create-meeting-btn'>
+    <div class='menu-btn'>
       <%= link_to '新規作成', new_meeting_path %>
     </div>
-    <div class='create-meeting-btn'>
+    <div class='menu-btn edit-btn'>
       <%= link_to '編集', "#" %>
     </div>
-    <div class='create-meeting-btn'>
+    <div class='menu-btn delete-btn'>
       <%= link_to '削除', "#" %>
     </div>
   </div>
-  <div class='logout'>
-    <%= link_to 'ログアウトする', destroy_user_session_path, method: :delete %>
+  <div class='return-menu'>
+    <div class='menu-btn'>
+      <%= link_to 'トップページに戻る', root_path %>
+    </div>
+    <div class='menu-btn logout-btn'>
+      <%= link_to 'ログアウトする', destroy_user_session_path, method: :delete %>
+    </div>
   </div>
 </div>

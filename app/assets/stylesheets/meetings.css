@@ -38,7 +38,7 @@
   height: 300px;
 }
 
-.create-meeting-btn a{
+.menu-btn a{
   display: block;
   width: 160px;
   height: 50px;
@@ -56,19 +56,19 @@
   margin: 10px 0;
 }
 
-.create-meeting-btn a:hover {
+.menu-btn a:hover {
   border-top: 4px solid #186294;
   border-right: 4px solid #cdebf3;
   border-bottom: 4px solid #59b9d1;
   border-left: 4px solid #104372;
 }
 
-.logout a{
-  text-decoration: none;
-  color: black
-}
-.logout a:hover {
-  color: blue;
+.logout-btn a:hover {
+  background: #e9937e;
+  border-top: 4px solid #dd9542;
+  border-right: 4px solid #f5ece3;
+  border-bottom: 4px solid #ebb98b;
+  border-left: 4px solid #bd6a0c;
 }
 
 /*メイン画面*/
