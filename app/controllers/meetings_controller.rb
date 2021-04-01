@@ -4,6 +4,7 @@ class MeetingsController < ApplicationController
   require "date"
 
   def index
+    @meetings = Meeting.all
   end
 
   def new

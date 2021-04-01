@@ -71,7 +71,7 @@
   border-left: 4px solid #bd6a0c;
 }
 
-/*メイン画面*/
+/*メイン画面 議事録新規作成*/
 .main-screen {
   width: calc(100vw - 200px);
   height: 100vh;
@@ -123,4 +123,32 @@
 .meeting-new-actions {
   text-align: center;
   padding-top: 10px;
+}
+
+/*メイン画面 議事録一覧*/
+.meetings {
+  margin:5px 10px;
+  width: calc(100vw - 200px - 60px - 20px);
+  border: 1px solid lightslategray;
+}
+
+.meeting-data, .column-name {
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+  border-bottom: 1px solid lightslategray;
+}
+
+.meeting-data-id {
+  display: none;
+}
+
+.meeting-data-name {
+  width: 100%;
+  padding-left: 3px;
+}
+.meeting-data-date, .meeting-data-created_at {
+  border-left: 1px solid lightslategray;
+  width: 300px;
+  padding-left: 3px;
 }

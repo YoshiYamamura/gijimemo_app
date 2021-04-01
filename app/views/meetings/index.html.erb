@@ -3,6 +3,25 @@
     <%= render 'side_bar' %>
   </div>
   <div class='main-screen'>
-    <%= render 'main_screen' %>
+    <div class='upper-index'>
+      <div class='index-title'>
+        <%= current_user.nickname %>さんが作成した議事録
+      </div>
+      <div class='meetings'>
+        <%= render partial: "meeting_list", locals: { meetings: @meetings } %>
+      </div>
+    </div>
+    <div class='middle-index'>
+      <div class='index-title'>
+        閲覧できる議事録
+      </div>
+
+    </div>
+    <div class='lower-index'>
+      <div class='index-title'>
+        文字起こしデータ
+      </div>
+
+    </div>
   </div>
 </div>
