@@ -3,8 +3,8 @@
     <div class='meeting-data-name'>
       打合せ名称
     </div>
-    <div class='meeting-data-date'>
-      打合せ日
+    <div class='meeting-data-datetime'>
+      打合せ日時
     </div>
     <div class='meeting-data-created_at'>
       最終更新日時
@@ -18,11 +18,12 @@
       <div class='meeting-data-name'>
         <%= meeting.name %>
       </div>
-      <div class='meeting-data-date'>
+      <div class='meeting-data-datetime'>
         <%= meeting.meeting_date %>
+        <%= meeting.meeting_time.strftime('%H:%M') if meeting.meeting_date.present? %>
       </div>
       <div class='meeting-data-created_at'>
-        <%= meeting.updated_at.strftime('%Y-%m-%d %H:%M') %>
+        <%= meeting.updated_at.localtime.strftime('%Y-%m-%d %H:%M') %>
       </div>
     </div>
   <% end %>

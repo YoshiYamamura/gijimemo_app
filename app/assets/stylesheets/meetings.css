@@ -147,7 +147,7 @@
   width: 100%;
   padding-left: 3px;
 }
-.meeting-data-date, .meeting-data-created_at {
+.meeting-data-datetime, .meeting-data-created_at {
   border-left: 1px solid lightslategray;
   width: 300px;
   padding-left: 3px;
