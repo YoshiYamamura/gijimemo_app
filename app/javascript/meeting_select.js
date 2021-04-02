@@ -21,8 +21,8 @@ function meetingSelect() {
         //編集、削除ボタンのリンク設定
         editBtnLink.removeAttribute("href");
         editBtnLink.setAttribute("href", `/meetings/${recordId}/edit`);
-        //deleteBtnLink.removeAttribute("href");
-        //deleteBtnLink.setAttribute('href', `/meetings/${recordId}/destroy`);
+        deleteBtnLink.removeAttribute("href");
+        deleteBtnLink.setAttribute('href', `/meetings/${recordId}`);
       })
     })
   })

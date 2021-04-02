@@ -13,7 +13,7 @@
       <%= link_to '編集', '#', id: "edit_btn_link" %>
     </div>
     <div class='menu-btn disabled' id='delete-btn'>
-      <%= link_to '削除', '#', id: "delete_btn_link" %>
+      <%= link_to '削除', '#', method: :delete, data: { confirm: "本当に削除しますか？削除したデータは戻すことが出来ません。" }, id: "delete_btn_link" %>
     </div>
   </div>
   <div class='return-menu'>
