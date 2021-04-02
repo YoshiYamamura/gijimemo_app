@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_meeting, only: [:edit, :update]
-  before_action :set_date, only: [:new, :create]
+  before_action :set_this_year, only: [:new, :create, :edit, :update]
 
   require "date"
 
@@ -43,9 +43,8 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
   end
 
-  def set_date
-    @today = Date.today
-    @this_year = @today.year
+  def set_this_year
+    @this_year = Date.today.year
   end
 
 end

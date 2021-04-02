@@ -129,7 +129,7 @@
   height: calc(100vh - 400px);
   min-height: 100px;
 }
-.meeting-new-actions {
+.meeting-actions {
   text-align: center;
   padding-top: 10px;
 }
