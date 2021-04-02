@@ -1,6 +1,6 @@
 class MeetingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_meeting, only: [:edit, :update, :destroy]
+  before_action :set_meeting, only: [:edit, :update, :destroy, :show]
   before_action :set_this_year, only: [:new, :create, :edit, :update]
 
   require "date"
@@ -36,6 +36,9 @@ class MeetingsController < ApplicationController
   def destroy
     @meeting.destroy
     redirect_to root_path
+  end
+
+  def show
   end
 
   private
