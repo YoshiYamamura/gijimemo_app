@@ -34,8 +34,8 @@
   overflow: scroll;
 }
 
-.create-meeting-menu {
-  height: 300px;
+.side-menu-branch {
+  margin-bottom:30px;
 }
 
 .menu-btn a{
