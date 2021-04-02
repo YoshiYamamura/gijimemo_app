@@ -21,7 +21,7 @@
               <label class='meeting-form-text'>打合せ日時</label>
             </div>
             <%= f.date_select :meeting_date, class: 'meeting-input-form', include_blank: true,
-                                            use_month_numbers: true, start_year: @today.year - 3, end_year: @today.year, selected: @today %>-
+                                            use_month_numbers: true, start_year: (@this_year - 3), end_year: @this_year, selected: @today %>-
             <%= f.time_select :meeting_time, class: 'meeting-input-form', include_blank: true %>
           </div>
           <div class='meeting-form-group meeting-place'>
