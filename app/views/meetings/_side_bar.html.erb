@@ -9,11 +9,11 @@
     <div class='menu-btn'>
       <%= link_to '新規作成', new_meeting_path %>
     </div>
-    <div class='menu-btn edit-btn'>
-      <%= link_to '編集', "#" %>
+    <div class='menu-btn disabled' id='edit-btn'>
+      <%= link_to '編集', '#', id: "edit_btn_link" %>
     </div>
-    <div class='menu-btn delete-btn'>
-      <%= link_to '削除', "#" %>
+    <div class='menu-btn disabled' id='delete-btn'>
+      <%= link_to '削除', '#', id: "delete_btn_link" %>
     </div>
   </div>
   <div class='return-menu'>

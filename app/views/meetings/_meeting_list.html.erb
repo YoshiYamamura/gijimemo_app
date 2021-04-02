@@ -1,28 +1,26 @@
 <% if meetings.present? %>
   <div class='column-name'>
-    <div class='meeting-data-name'>
+    <div class='meeting-name'>
       打合せ名称
     </div>
-    <div class='meeting-data-date'>
-      打合せ日
+    <div class='meeting-datetime'>
+      打合せ日時
     </div>
-    <div class='meeting-data-created_at'>
+    <div class='meeting-created_at'>
       最終更新日時
     </div>
   </div>
   <% meetings.each do |meeting| %>
-    <div class='meeting-data'>
-      <div class='meeting-data-id'>
-        <%= meeting.id %>
-      </div>
-      <div class='meeting-data-name'>
+    <div class='meeting-record' id="meeting-id-<%= meeting.id %>">
+      <div class='meeting-name'>
         <%= meeting.name %>
       </div>
-      <div class='meeting-data-date'>
+      <div class='meeting-datetime'>
         <%= meeting.meeting_date %>
+        <%= meeting.meeting_time.strftime('%H:%M') if meeting.meeting_date.present? %>
       </div>
-      <div class='meeting-data-created_at'>
-        <%= meeting.updated_at.strftime('%Y-%m-%d %H:%M') %>
+      <div class='meeting-created_at'>
+        <%= meeting.updated_at.localtime.strftime('%Y-%m-%d %H:%M') %>
       </div>
     </div>
   <% end %>

@@ -1,5 +1,7 @@
 class MeetingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_meeting, only: [:edit, :update]
+  before_action :set_this_year, only: [:new, :create, :edit, :update]
 
   require "date"
 
@@ -9,7 +11,6 @@ class MeetingsController < ApplicationController
 
   def new
     @meeting = Meeting.new
-    @today = Date.today
   end
 
   def create
@@ -21,10 +22,29 @@ class MeetingsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @meeting.update(meeting_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def meeting_params
     params.require(:meeting).permit(:name, :meeting_date, :meeting_time, :place, :attendance, :speech).merge(user_id: current_user.id)
+  end
+
+  def set_meeting
+    @meeting = Meeting.find(params[:id])
+  end
+
+  def set_this_year
+    @this_year = Date.today.year
   end
 
 end
