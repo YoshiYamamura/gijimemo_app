@@ -1,0 +1,28 @@
+/** メイン画面 ユーザープロフィール */
+.profile-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.profile-main {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  background-color: white;
+  padding: 3px;
+}
+
+.profile-contents {
+  margin-bottom: 10px;
+}
+
+.profile-name, .profile-belonging,  .profile-self-introduction {
+  padding-left: 5px;
+}
+
+.blank {
+  color: gray;
+}
+
+.profile-btn a {
+  margin: 20px auto;
+}

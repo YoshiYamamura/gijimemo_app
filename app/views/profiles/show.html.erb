@@ -1,0 +1,52 @@
+<div class='wrapper'>
+  <div class='side-bar'>
+    <%= render 'meetings/side_bar' %>
+  </div>
+  <div class='main-screen'>
+    <div class='profile-title'>
+      <%= @user.nickname %>さんのプロフィール
+    </div>
+    <div class='profile-main'>
+      <div class='profile-contents'>
+        <div class='contents-name'>
+          氏名
+        </div>
+        <div class='profile-name'>
+          <% if @profile.family_name || @profile.first_name %>
+            <%= @profile.family_name %>
+            <%= @profile.first_name %>
+          <% else %>
+            <p class='blank'>まだ登録されていません</p>
+          <% end %>
+        </div>
+      </div>
+      <div class='profile-contents'>
+        <div class='contents-name'>
+          所属
+        </div>
+        <div class='profile-belonging'>
+          <% if @profile.belonging %>
+            <%= @profile.belonging %>
+          <% else %>
+            <p class='blank'>まだ登録されていません</p>
+          <% end %>
+        </div>
+      </div>
+      <div class='profile-contents'>
+        <div class='contents-name'>
+          紹介文
+        </div>
+        <div class='profile-self-introduction'>
+          <% if @profile.self_introduction %>
+            <%= @profile.self_introduction %>
+          <% else %>
+            <p class='blank'>まだ登録されていません</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class='menu-btn profile-btn'>
+      <%= link_to '編集する', new_profile_path %>
+    </div>
+  </div>
+</div>
