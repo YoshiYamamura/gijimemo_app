@@ -31,7 +31,7 @@
   height: calc(100vh - 80px);
   background-color: lightcyan;
   padding: 20px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .side-menu-branch {
@@ -86,6 +86,7 @@
   height: 100vh;
   background-color:lightcyan;
   padding: 30px;
+  overflow: auto;
 }
 
 .meeting-title {
@@ -160,4 +161,8 @@
 
 .selected {
   background-color: rgb(245, 211, 168);
+}
+
+p {
+  white-space: pre-wrap;
 }
