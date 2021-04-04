@@ -53,7 +53,7 @@
   border-right: 4px solid #104372;
   border-bottom: 4px solid #186294;
   border-left: 4px solid #cdebf3;
-  margin: 10px 0;
+  margin: 10px auto;
 }
 
 .submit-btn:hover, .menu-btn a:hover {
@@ -129,10 +129,6 @@
   width: 100%;
   height: calc(100vh - 400px);
   min-height: 100px;
-}
-.meeting-actions {
-  text-align: center;
-  padding-top: 10px;
 }
 
 /* メイン画面 議事録一覧 */
