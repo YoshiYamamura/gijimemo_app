@@ -1,0 +1,26 @@
+<%= form_with model: profile, local: true do |f| %>
+    <div class='profile-form-group profile-name'>
+      <div>
+        <label class='profile-form-text'>氏名</label>
+      </div>
+      <%= f.text_field :family_name, class: 'profile-input-form', maxlength: '40', placeholder: '例：山田',autofocus: true %>
+      <%= f.text_field :first_name, class: 'profile-input-form', maxlength: '40', placeholder: '花子' %>
+    </div>
+
+    <div class='profile-form-group profile-belonging'>
+      <div>
+        <label class='profile-form-text'>所属</label>
+      </div>
+      <%= f.text_field :belonging, class: 'profile-input-form', maxlength: '40' %>
+    </div>
+
+    <div class='profile-form-group profile-self-introduction'>
+      <div>
+        <label class='profile-form-text'>紹介文</label>
+      </div>
+      <%= f.text_area :self_introduction, class: 'profile-input-form' %>
+    </div>
+    <div class='profile-actions'>
+        <%= f.submit "保存する", class: 'submit-btn' %>
+    </div>
+<% end %>

@@ -26,3 +26,22 @@
 .profile-btn a {
   margin: 20px auto;
 }
+
+.profile-form-group {
+  margin-bottom: 10px;
+}
+
+.profile-name .profile-input-form {
+  height: 30px;
+  width: 200px;
+}
+
+.profile-belonging .profile-input-form {
+  height: 30px;
+  width: 100%;
+}
+
+.profile-self-introduction .profile-input-form {
+  height: calc(100vh - 400px);
+  width: 100%;
+}

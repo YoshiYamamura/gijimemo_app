@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
   def show
     @user = User.find(params[:id])
-    if Profile.where(user_id: @user.id).present?
-      @profile = Profile.where(user_id: @user.id)
+    if Profile.find_by(user_id: @user.id).present?
+      @profile = Profile.find_by(user_id: @user.id)
     else
       @profile = Profile.new
     end
@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
 
   private
 
-  def meeting_params
+  def profile_params
     params.require(:profile).permit(:family_name, :first_name, :belonging, :self_introduction).merge(user_id: current_user.id)
   end
 
