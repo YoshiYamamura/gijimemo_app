@@ -1,0 +1,28 @@
+<div class='wrapper'>
+  <div class='side-bar'>
+    <%= render 'side_bar' %>
+  </div>
+  <div class='main-screen'>
+    <div class='meeting-content'>
+      打合せ名称：
+      <p><%= @meeting.name %></p>
+    </div>
+    <div class='meeting-content'>
+      打合せ日時：
+      <p><%= @meeting.meeting_date %>
+         <%= @meeting.meeting_time.strftime('%H:%M') if @meeting.meeting_date.present? %></p>
+    </div>
+    <div class='meeting-content'>
+      打合せ場所：
+      <p><%= @meeting.place %></p>
+    </div>
+    <div class='meeting-content'>
+      出席者：
+      <p><%= @meeting.attendance %></p>
+    </div>
+    <div class='meeting-content'>
+      打合せ内容：
+      <p><%= @meeting.speech %></p>
+    </div>
+  </div>
+</div>
