@@ -5,6 +5,8 @@ function meetingSelect() {
   const editBtnLink = document.getElementById('edit_btn_link');
   const deleteBtn = document.getElementById('delete-btn');
   const deleteBtnLink = document.getElementById('delete_btn_link');
+  const showBtn = document.getElementById('show-btn');
+  const showBtnLink = document.getElementById('show_btn_link');
 
   meetingRecordAll.forEach(function(meetingRecordSelected){
     meetingRecordSelected.addEventListener('click', function(){
@@ -15,14 +17,17 @@ function meetingSelect() {
         meetingRecordSelected.classList.add('selected');
         //選択（クリック）したmeetingRecordのid取得
         let recordId = meetingRecordSelected.getAttribute('id').replace('meeting-id-','');
-        //編集、削除ボタンが活性化
+        //編集、削除、閲覧ボタンが活性化
         editBtn.classList.remove('disabled');
         deleteBtn.classList.remove('disabled');
-        //編集、削除ボタンのリンク設定
+        showBtn.classList.remove('disabled');
+        //編集、削除、閲覧ボタンのリンク設定
         editBtnLink.removeAttribute("href");
         editBtnLink.setAttribute("href", `/meetings/${recordId}/edit`);
         deleteBtnLink.removeAttribute("href");
         deleteBtnLink.setAttribute('href', `/meetings/${recordId}`);
+        showBtnLink.removeAttribute("href");
+        showBtnLink.setAttribute("href", `/meetings/${recordId}`);
       })
     })
   })
