@@ -38,7 +38,7 @@
   margin-bottom:30px;
 }
 
-.menu-btn a{
+.submit-btn, .menu-btn a{
   display: block;
   width: 160px;
   height: 50px;
@@ -53,10 +53,10 @@
   border-right: 4px solid #104372;
   border-bottom: 4px solid #186294;
   border-left: 4px solid #cdebf3;
-  margin: 10px 0;
+  margin: 10px auto;
 }
 
-.menu-btn a:hover {
+.submit-btn:hover, .menu-btn a:hover {
   border-top: 4px solid #186294;
   border-right: 4px solid #cdebf3;
   border-bottom: 4px solid #59b9d1;
@@ -129,10 +129,6 @@
   width: 100%;
   height: calc(100vh - 400px);
   min-height: 100px;
-}
-.meeting-actions {
-  text-align: center;
-  padding-top: 10px;
 }
 
 /* メイン画面 議事録一覧 */
