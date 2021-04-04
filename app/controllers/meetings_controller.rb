@@ -6,7 +6,7 @@ class MeetingsController < ApplicationController
   require "date"
 
   def index
-    @meetings = Meeting.all
+    @my_meetings = Meeting.where(user: current_user.id)
   end
 
   def new
