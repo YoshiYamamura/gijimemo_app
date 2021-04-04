@@ -46,7 +46,11 @@
       </div>
     </div>
     <div class='menu-btn profile-btn'>
-      <%= link_to '編集する', new_profile_path %>
+      <% if @profile.family_name || @profile.first_name || @profile.belonging || @profile.self_introduction %>
+        <%= link_to '編集する', edit_profile_path(@profile) %>
+      <% else %>
+        <%= link_to '編集する', new_profile_path %>
+      <% end %>
     </div>
   </div>
 </div>

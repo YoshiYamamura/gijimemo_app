@@ -1,0 +1,11 @@
+<div class='wrapper'>
+  <div class='side-bar'>
+    <%= render 'meetings/side_bar' %>
+  </div>
+  <div class='main-screen'>
+    <div class='profile-title'>
+      プロフィール編集
+    </div>
+    <%= render partial: "profile_form", locals: { profile: @profile } %>
+  </div>
+</div>
