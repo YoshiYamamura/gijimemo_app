@@ -2,13 +2,13 @@
   display: flex;
 }
 
-/*サイドバー*/
+/* サイドバー */
 .side-bar{
   width: 200px;
   height: 100vh;
   border-right: 4px ridge lightblue;
 }
-
+/** サイドバー ヘッダー */
 .side-header{
   height: 80px;
   background-color: lightblue;
@@ -26,7 +26,7 @@
   color: black;
   text-decoration: none;
 }
-
+/** サイドバー メニュー */
 .side-menu{
   height: calc(100vh - 80px);
   background-color: lightcyan;
@@ -80,7 +80,7 @@
   border-left: 4px solid #b0b4b4;
 }
 
-/*メイン画面 議事録新規作成*/
+/* メイン画面 */
 .main-screen {
   width: calc(100vw - 200px);
   height: 100vh;
@@ -88,7 +88,7 @@
   padding: 30px;
   overflow: auto;
 }
-
+/** メイン画面 議事録新規作成 & 編集 */
 .meeting-title {
   font-size: 20px;
   margin-bottom: 20px;
@@ -135,7 +135,7 @@
   padding-top: 10px;
 }
 
-/*メイン画面 議事録一覧*/
+/* メイン画面 議事録一覧 */
 .meetings {
   margin:5px 10px;
   width: calc(100vw - 200px - 60px - 20px);
@@ -145,15 +145,20 @@
 .meeting-record, .column-name {
   display: flex;
   justify-content: flex-end;
+  border-top: 1px solid lightgray;
+}
+.column-name {
+  background-color: lightgray;
+}
+.meeting-record {
   background-color: white;
-  border-bottom: 1px solid lightslategray;
 }
 
-.meeting-name {
+.meeting-list-name {
   width: 100%;
   padding-left: 3px;
 }
-.meeting-datetime, .meeting-created_at {
+.meeting-list-datetime, .meeting-list-created_at {
   border-left: 1px solid lightslategray;
   width: 300px;
   padding-left: 3px;
@@ -163,6 +168,7 @@
   background-color: rgb(245, 211, 168);
 }
 
+/* メイン画面 議事録閲覧 */
 p {
   white-space: pre-wrap;
 }
