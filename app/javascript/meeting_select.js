@@ -27,7 +27,7 @@ function meetingSelect() {
         deleteBtnLink.removeAttribute("href");
         deleteBtnLink.setAttribute('href', `/meetings/${recordId}`);
         showBtnLink.removeAttribute("href");
-        showBtnLink.setAttribute("href", `/meetings/${recordId}/show`);
+        showBtnLink.setAttribute("href", `/meetings/${recordId}`);
       })
     })
   })
