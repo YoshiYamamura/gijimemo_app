@@ -1,0 +1,2 @@
+class AccessPermit < ApplicationRecord
+end
