@@ -12,5 +12,6 @@ class User < ApplicationRecord
   end
 
   has_many :meetings
+  has_many :access_permits
   has_one :profile
 end
