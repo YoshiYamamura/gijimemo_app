@@ -45,6 +45,11 @@ class MeetingsController < ApplicationController
   end
 
   def show
+    @permitted_users = []
+    access_permits = AccessPermit.where(meeting: params[:id])
+    access_permits.each do |access_permit|
+      @permitted_users << User.find(access_permit.user_id)
+    end
   end
 
   private

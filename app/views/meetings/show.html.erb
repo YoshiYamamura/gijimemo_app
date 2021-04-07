@@ -25,7 +25,9 @@
         </div>
         <div class='meeting-content-group'>
           議事録共有ユーザー
-          <p><%# @meeting.attendance %></p>
+          <% @permitted_users.each do |permitted_user| %>
+            <p><%= permitted_user.nickname %></p>
+          <% end %>
         </div>
       </div>
     </div>
