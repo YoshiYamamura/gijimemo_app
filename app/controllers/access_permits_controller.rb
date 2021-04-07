@@ -1,5 +1,7 @@
 class AccessPermitsController < ApplicationController
+  before_action :authenticate_user!
   before_action :access_permitted, only: [:index, :create]
+  before_action :identificate_user
 
   def index
     @users = User.where.not(id: current_user.id)
@@ -32,5 +34,9 @@ class AccessPermitsController < ApplicationController
 
   def access_permitted
     @access_permits = AccessPermit.where(meeting: params[:meeting_id])
+  end
+
+  def identificate_user
+    redirect_to root_path if current_user.id != Meeting.find(params[:meeting_id]).user_id
   end
 end
