@@ -138,7 +138,7 @@
   border: 1px solid lightslategray;
 }
 
-.meeting-record, .column-name {
+.meeting-record-create, .meeting-record-show, .column-name {
   display: flex;
   justify-content: flex-end;
   border-top: 1px solid lightgray;
@@ -146,7 +146,7 @@
 .column-name {
   background-color: lightgray;
 }
-.meeting-record {
+.meeting-record-create, .meeting-record-show {
   background-color: white;
 }
 
