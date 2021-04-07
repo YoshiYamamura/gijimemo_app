@@ -7,6 +7,11 @@ class MeetingsController < ApplicationController
 
   def index
     @my_meetings = Meeting.where(user: current_user.id)
+    @permitted_meetings = []
+    access_permits = AccessPermit.where(user: current_user.id)
+    access_permits.each do |access_permit|
+      @permitted_meetings << Meeting.find(access_permit.meeting_id)
+    end
   end
 
   def new

@@ -16,7 +16,7 @@
         閲覧できる議事録
       </div>
       <div class='meetings'>
-        <%# render partial: "meeting_list", locals: { meetings: } %>
+        <%= render partial: "meeting_list", locals: { meetings: @permitted_meetings } %>
       </div>
     </div>
     <div class='lower-index'>
