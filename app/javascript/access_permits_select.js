@@ -54,6 +54,8 @@ function accessPermitsSelect() {
     XHR.open("POST", "access_permits", true);
     set_token(XHR);
     XHR.send(formData);
+    //トップページに遷移
+    window.location.href = "/";
   })
 }
 
