@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 //require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("../access_permits_select")
 require("../meeting_select")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
