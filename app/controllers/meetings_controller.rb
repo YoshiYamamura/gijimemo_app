@@ -2,6 +2,7 @@ class MeetingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_meeting, only: [:edit, :update, :destroy, :show]
   before_action :set_this_year, only: [:new, :create, :edit, :update]
+  before_action :identificate_user, only: [:edit, :update, :destroy]
 
   require "date"
 
@@ -60,4 +61,7 @@ class MeetingsController < ApplicationController
     @this_year = Date.today.year
   end
 
+  def identificate_user
+    redirect_to root_path if current_user.id != @meeting.user_id
+  end
 end
