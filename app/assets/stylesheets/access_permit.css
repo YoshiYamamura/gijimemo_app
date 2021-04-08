@@ -3,13 +3,25 @@
   margin-bottom: 20px;
 }
 
+.meeting-info {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  background-color: white;
+  padding: 3px;
+}
+
 .access-permit-select-form {
+  margin-top: 20px;
   display: flex;
   justify-content: space-around;
 }
 
-.user-select-box {
+.user-select-box, #search-user-form {
   width: 30vw;
+}
+
+.user-select-box p {
+  text-align: right;
 }
 
 .user-select-btn {
