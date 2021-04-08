@@ -5,7 +5,7 @@
 </div>
 <div class='side-menu'>
   <div class='side-menu-branch'>
-    <p>議事録作成メニュー</p>
+    <p>議事録 作成・閲覧</p>
     <div class='menu-btn'>
       <%= link_to '新規作成', new_meeting_path %>
     </div>
@@ -18,11 +18,17 @@
     <div class='menu-btn disabled' id='access-permit-btn'>
       <%= link_to '共有設定', '#', id: "access_permit_btn_link" %>
     </div>
-  </div>
-  <div class='side-menu-branch'>
-    <p>議事録閲覧メニュー</p>
     <div class='menu-btn disabled' id='show-btn'>
       <%= link_to '閲覧', '#', id: "show_btn_link" %>
+    </div>
+  </div>
+  <div class='side-menu-branch'>
+    <p>文字起こし機能</p>
+    <div class='menu-btn'>
+      <%= link_to '新規作成', new_transcript_path %>
+    </div>
+    <div class='menu-btn disabled'>
+      <%= link_to '閲覧', '#' %>
     </div>
   </div>
   <div class='side-menu-branch'>

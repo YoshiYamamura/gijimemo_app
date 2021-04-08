@@ -10,7 +10,7 @@
 }
 /** サイドバー ヘッダー */
 .side-header{
-  height: 80px;
+  height: 60px;
   background-color: lightblue;
   padding: 0 20px;
   display: flex;
@@ -28,7 +28,7 @@
 }
 /** サイドバー メニュー */
 .side-menu{
-  height: calc(100vh - 80px);
+  height: calc(100vh - 60px);
   background-color: lightcyan;
   padding: 20px;
   overflow: auto;
