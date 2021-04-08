@@ -2,11 +2,17 @@ class MeetingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_meeting, only: [:edit, :update, :destroy, :show]
   before_action :set_this_year, only: [:new, :create, :edit, :update]
+  before_action :identificate_user, only: [:edit, :update, :destroy]
 
   require "date"
 
   def index
     @my_meetings = Meeting.where(user: current_user.id)
+    @permitted_meetings = []
+    access_permits = AccessPermit.where(user: current_user.id)
+    access_permits.each do |access_permit|
+      @permitted_meetings << Meeting.find(access_permit.meeting_id)
+    end
   end
 
   def new
@@ -39,6 +45,11 @@ class MeetingsController < ApplicationController
   end
 
   def show
+    @permitted_users = []
+    access_permits = AccessPermit.where(meeting: params[:id])
+    access_permits.each do |access_permit|
+      @permitted_users << User.find(access_permit.user_id)
+    end
   end
 
   private
@@ -55,4 +66,7 @@ class MeetingsController < ApplicationController
     @this_year = Date.today.year
   end
 
+  def identificate_user
+    redirect_to root_path if current_user.id != @meeting.user_id
+  end
 end

@@ -1,0 +1,41 @@
+<div class='wrapper'>
+  <div class='side-bar'>
+    <%= render 'meetings/side_bar' %>
+  </div>
+  <div class='main-screen'>
+    <div class='access-permit-title'>
+      議事録共有設定
+    </div>
+    <div class="meeting-info">
+      打合せ名称：<%= @meeting.name %><br>
+      打合せ日時：<%= @meeting.meeting_date %>
+      <%= @meeting.meeting_time.strftime('%H:%M') if @meeting.meeting_date.present? %><br>
+      出席者：<%= @meeting.attendance %><br>
+    </div>
+    <%= form_with url: '' do |f| %>
+      <div class='access-permit-select-form'>
+        <div class="user-select-box" >
+          <%= f.label :user_id, '選択可能なユーザー', for: 's1' %><br>
+          <%= f.search_field :user_id, id: "search-user-form", placeholder: 'ニックネーム or 氏名 or 所属を入力して検索' %>
+          <%= f.select :user_id, options_for_select(@users.map{|user| ["#{user.nickname}（#{user.profile.family_name} #{user.profile.first_name}）, #{user.profile.belonging}", user.id] }), {}, {class: "user-select-box", id: "s1", size: "10", multiple: "multiple"} %>
+        </div>
+        <div>
+          <input type="button" class="user-select-btn" id="right-btn" value=">>"><br>
+          <input type="button" class="user-select-btn" id="left-btn" value="<<">
+        </div>
+    <% end %>
+    <%= form_with url: meeting_access_permits_path, local: true do |f| %>
+        <div>
+          <div class="user-select-box" >
+            <%= f.label :user_id, '共有ユーザー', for: 's2' %><br>
+            <p><span id="select-user-number"><%= @access_permits.count %></span>名選択</p>
+            <%= f.select :user_id, options_for_select(@access_permits.map{|access_permit| ["#{access_permit.user.nickname}（#{access_permit.user.profile.family_name} #{access_permit.user.profile.first_name}）, #{access_permit.user.profile.belonging}", access_permit.user_id] }), {}, {class: "user-select-box", id: "s2", size: "10", multiple: "multiple"} %>
+          </div>
+          <div class='access-permit-actions'>
+            <%= f.submit "保存する", class: "submit-btn", id: "submit-btn" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -8,7 +8,7 @@
         <%= current_user.nickname %>さんが作成した議事録
       </div>
       <div class='meetings'>
-        <%= render partial: "meeting_list", locals: { meetings: @my_meetings } %>
+        <%= render partial: "meeting_list_create", locals: { meetings: @my_meetings } %>
       </div>
     </div>
     <div class='middle-index'>
@@ -16,7 +16,7 @@
         閲覧できる議事録
       </div>
       <div class='meetings'>
-        <%# render partial: "meeting_list", locals: { meetings: } %>
+        <%= render partial: "meeting_list_show", locals: { meetings: @permitted_meetings } %>
       </div>
     </div>
     <div class='lower-index'>
