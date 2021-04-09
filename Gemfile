@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'pry-rails'
+gem 'google-cloud-storage', '~> 1.31'
+gem 'google-cloud-speech', '~> 1.2'
