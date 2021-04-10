@@ -1,0 +1,28 @@
+<% if transcripts.present? %>
+  <div class='column-name'>
+    <div class='transcript-list-name'>
+      タイトル
+    </div>
+    <div class='transcript-list-status'>
+      状態
+    </div>
+    <div class='transcript-list-created_at'>
+      送信日時
+    </div>
+  </div>
+  <% transcripts.each do |transcript| %>
+    <div class='meeting-record transcript-record' id="transcript-id-<%= transcript.id %>">
+      <div class='transcript-list-name'>
+        <%= transcript.name %>
+      </div>
+      <div class='transcript-list-status'>
+        <%= transcript.status %>
+      </div>
+      <div class='transcript-list-created_at'>
+        <%= transcript.updated_at.localtime.strftime('%Y-%m-%d %H:%M') %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  現在、文字起こしデータはありません。
+<% end %>

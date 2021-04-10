@@ -13,6 +13,7 @@ class MeetingsController < ApplicationController
     access_permits.each do |access_permit|
       @permitted_meetings << Meeting.find(access_permit.meeting_id)
     end
+    @transcripts = Transcript.where(user: current_user.id)
   end
 
   def new
