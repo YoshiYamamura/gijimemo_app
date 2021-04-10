@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :meetings do
     resources :access_permits, only: [:index, :create]
   end
-  resources :transcripts, only: [:new, :create]
+  resources :transcripts, only: [:new, :create, :show]
   resources :profiles, only: [:show, :new, :create, :edit, :update]
 end
