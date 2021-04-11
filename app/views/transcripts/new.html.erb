@@ -7,13 +7,14 @@
       文字起こし機能
     </div>
     <%= form_with model: @transcript, local: true do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
       <div>
         <%= f.label :name, 'タイトル（打合せ名など）', for: 'transcript-title'%><br>
         <%= f.text_field :name, id: 'transcript-title' %>
       </div>
       <div>
         <%= f.label :voice_data, '音声データ', for: 'transcript-voice-data'%><br>
-        <%= f.file_field :voice_data, id: 'transcript-voice-data'%>
+        <%= f.file_field :voice_data, id: 'transcript-voice-data', accept: 'audio/flac, audio/mpeg, audio/wav'%>
       </div>
       <%= f.hidden_field :transcript, value: "#" %>
       <%= f.hidden_field :status, value: 0 %>
