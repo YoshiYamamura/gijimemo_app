@@ -1,4 +1,6 @@
 class Transcript < ApplicationRecord
+  attr_accessor :samplerate
+
   belongs_to :user
   has_one_attached :voice_data
 

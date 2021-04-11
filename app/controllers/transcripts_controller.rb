@@ -6,8 +6,8 @@ class TranscriptsController < ApplicationController
   def create
     @transcript = Transcript.new(transcript_params)
     if @transcript.save
-      speech_async_recognize_gcs
       redirect_to root_path
+      speech_async_recognize_gcs
     else
       render :new
     end
@@ -20,7 +20,7 @@ class TranscriptsController < ApplicationController
   private
 
   def transcript_params
-    params.require(:transcript).permit(:name, :transcript, :status, :voice_data).merge(user_id: current_user.id)
+    params.require(:transcript).permit(:name, :transcript, :status, :voice_data, :samplerate).merge(user_id: current_user.id)
   end
 
   def speech_async_recognize_gcs #Google Cloud Storageファイルの非同期音声文字変換
@@ -28,11 +28,10 @@ class TranscriptsController < ApplicationController
     speech = Google::Cloud::Speech.speech
 
     storage_path = "gs://gijimemo_bucket/#{@transcript.voice_data.key}"
-    content_type = @transcript.voice_data.content_type
-    config = { language_code:     "ja-JP",               #言語設定：日本語
-               encoding:          :ENCODING_UNSPECIFIED, #エンコーディング：FLAC、WAVの時は省略可
-               sample_rate_hertz: 44_100,                #サンプリングレート：FLAC、WAVの時は省略可
-               enable_automatic_punctuation: true }      #句読点挿入機能
+    config = { language_code:     "ja-JP",                     #言語設定：日本語
+               encoding:          :ENCODING_UNSPECIFIED,       #エンコーディング：FLAC、WAVの時は省略可
+               sample_rate_hertz: @transcript.samplerate.to_i, #サンプリングレート：FLAC、WAVの時は省略可
+               enable_automatic_punctuation: true }            #句読点挿入機能
     audio = { uri: storage_path }
   
     operation = speech.long_running_recognize config: config, audio: audio
