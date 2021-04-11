@@ -272,7 +272,6 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    ruby-audio (1.6.1)
     ruby2_keywords (0.0.4)
     ruby_dep (1.5.0)
     rubyzip (2.3.0)
@@ -358,7 +357,6 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 6.0.0)
   rspec-rails (~> 4.0.0)
-  ruby-audio (~> 1.6, >= 1.6.1)
   sass-rails (~> 5)
   selenium-webdriver
   spring
