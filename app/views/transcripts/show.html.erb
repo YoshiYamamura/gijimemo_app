@@ -6,6 +6,12 @@
     <div class='transcript-title'>
       文字起こし機能
     </div>
-    
+    <div class="transcript-info">
+      タイトル：<%= @transcript.name %><br>
+      送信日時：<%= @transcript.created_at.strftime('%Y-%m-%d %H:%M') %>
+    </div>
+    <div class="transcript-text">
+      <%= @transcript.transcript %>
+    </div>
   </div>
 </div>
