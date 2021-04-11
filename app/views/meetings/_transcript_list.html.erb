@@ -16,7 +16,14 @@
         <%= transcript.name %>
       </div>
       <div class='transcript-list-status'>
-        <%= transcript.status %>
+        <% case transcript.status %>
+          <% when 1 %>
+            <%= '完了' %>
+          <% when 0 %>
+            <%= '変換中' %>
+          <% when -1 %>
+            <%= 'エラー' %>
+        <% end %>
       </div>
       <div class='transcript-list-created_at'>
         <%= transcript.updated_at.localtime.strftime('%Y-%m-%d %H:%M') %>
