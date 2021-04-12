@@ -8,5 +8,6 @@ function text_copy() {
     document.execCommand("copy");
   })
 }
-
-window.addEventListener('load', text_copy)
+if(document.URL.match(/transcripts/)){
+  window.addEventListener('load', text_copy)
+}

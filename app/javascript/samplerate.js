@@ -8,5 +8,6 @@ function samplerate() {
     this.insertAdjacentHTML("afterEnd",html);
   })
 }
-
-window.addEventListener('load', samplerate)
+if(document.URL.match(/transcripts\/new/)){
+  window.addEventListener('load', samplerate)
+}
