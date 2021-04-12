@@ -1,4 +1,6 @@
 class TranscriptsController < ApplicationController
+  before_action :set_transcript, only: [:show, :destroy]
+
   def new
     @transcript = Transcript.new
   end
@@ -14,13 +16,21 @@ class TranscriptsController < ApplicationController
   end
 
   def show
-    @transcript = Transcript.find(params[:id])
+  end
+
+  def destroy
+    @transcript.destroy
+    redirect_to root_path
   end
 
   private
 
   def transcript_params
     params.require(:transcript).permit(:name, :transcript, :status, :voice_data, :samplerate).merge(user_id: current_user.id)
+  end
+
+  def set_transcript
+    @transcript = Transcript.find(params[:id])
   end
 
   def speech_async_recognize_gcs #Google Cloud Storageファイルの非同期音声文字変換
