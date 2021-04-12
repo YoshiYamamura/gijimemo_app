@@ -30,6 +30,9 @@
     <div class='menu-btn disabled' id='show-transcript-btn'>
       <%= link_to '閲覧', '#', id: "show_transcript_btn_link" %>
     </div>
+    <div class='menu-btn disabled' id='delete-transcript-btn'>
+      <%= link_to '削除', '#', method: :delete, data: { confirm: "本当に削除しますか？削除したデータは戻すことが出来ません。" }, id: "delete_transcript_btn_link" %>
+    </div>
   </div>
   <div class='side-menu-branch'>
     <div class='menu-btn'>
