@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_033428) do
+ActiveRecord::Schema.define(version: 2021_04_13_091430) do
 
   create_table "access_permits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "meeting_id"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2021_04_09_033428) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "reactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "comment", null: false
+    t.bigint "user_id"
+    t.bigint "meeting_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meeting_id"], name: "index_reactions_on_meeting_id"
+    t.index ["user_id"], name: "index_reactions_on_user_id"
+  end
+
   create_table "transcripts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "transcript", null: false
     t.integer "status", null: false
@@ -94,5 +104,7 @@ ActiveRecord::Schema.define(version: 2021_04_09_033428) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "meetings", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "reactions", "meetings"
+  add_foreign_key "reactions", "users"
   add_foreign_key "transcripts", "users"
 end
