@@ -4,8 +4,8 @@ class Transcript < ApplicationRecord
   belongs_to :user
   has_one_attached :voice_data
 
-  audiofile_mime_types = [/^audio\/.*flac$/, /^audio\/.*mpeg$/, /^audio\/.*wav$/]
-  message_mime_types = 'only FLAC, MP3, WAV are allowed'
+  audiofile_mime_types = [/^audio\/.*flac$/, /^audio\/.*mpeg$/, /^audio\/.*wav$/, /^audio\/.*wave$/]
+  message_mime_types = '本機能はFLAC, MP3, WAVの音声ファイルに対応しています'
 
   with_options presence: true do
     validates :name
