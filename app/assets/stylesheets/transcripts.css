@@ -22,3 +22,22 @@
   opacity: 0;
   height: 1px;
 }
+
+#transcript-title {
+  width: 400px;
+  height: 30px;
+}
+
+#sample-rate {
+  width: 100px;
+  height: 30px;
+}
+
+.audio-data {
+  margin: 10px 0;
+}
+
+.audio-data p {
+  height: 20px;
+  font-size: 12px;
+}

@@ -9,7 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("../access_permits_select")
 require("../meeting_select")
-require("../samplerate")
+require("../transcript")
 require("../text_copy")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
