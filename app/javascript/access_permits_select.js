@@ -76,5 +76,6 @@ function accessPermitsSelect() {
     window.location.href = "/";
   })
 }
-
-window.addEventListener('load', accessPermitsSelect)
+if(document.URL.match(/access_permits/)){
+  window.addEventListener('load', accessPermitsSelect)
+}

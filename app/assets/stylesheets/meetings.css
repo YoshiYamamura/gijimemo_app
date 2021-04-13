@@ -10,7 +10,7 @@
 }
 /** サイドバー ヘッダー */
 .side-header{
-  height: 80px;
+  height: 60px;
   background-color: lightblue;
   padding: 0 20px;
   display: flex;
@@ -28,7 +28,7 @@
 }
 /** サイドバー メニュー */
 .side-menu{
-  height: calc(100vh - 80px);
+  height: calc(100vh - 60px);
   background-color: lightcyan;
   padding: 20px;
   overflow: auto;
@@ -38,7 +38,7 @@
   margin-bottom:30px;
 }
 
-.submit-btn, .menu-btn a{
+.submit-btn, .copy-btn, .menu-btn a{
   display: block;
   width: 160px;
   height: 50px;
@@ -56,7 +56,7 @@
   margin: 10px auto;
 }
 
-.submit-btn:hover, .menu-btn a:hover {
+.submit-btn:hover, .copy-btn:hover, .menu-btn a:hover {
   border-top: 4px solid #186294;
   border-right: 4px solid #cdebf3;
   border-bottom: 4px solid #59b9d1;
@@ -138,7 +138,7 @@
   border: 1px solid lightslategray;
 }
 
-.meeting-record-create, .meeting-record-show, .column-name {
+.meeting-record-create, .meeting-record-show, .transcript-record, .column-name {
   display: flex;
   justify-content: flex-end;
   border-top: 1px solid lightgray;
@@ -146,15 +146,15 @@
 .column-name {
   background-color: lightgray;
 }
-.meeting-record-create, .meeting-record-show {
+.meeting-record-create, .meeting-record-show, .transcript-record {
   background-color: white;
 }
 
-.meeting-list-name {
+.meeting-list-name, .transcript-list-name {
   width: 100%;
   padding-left: 3px;
 }
-.meeting-list-datetime, .meeting-list-created_at {
+.meeting-list-datetime, .meeting-list-created_at, .transcript-list-status, .transcript-list-created_at {
   border-left: 1px solid lightslategray;
   width: 300px;
   padding-left: 3px;

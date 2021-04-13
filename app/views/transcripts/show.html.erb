@@ -1,0 +1,19 @@
+<div class='wrapper'>
+  <div class='side-bar'>
+    <%= render 'meetings/side_bar' %>
+  </div>
+  <div class='main-screen'>
+    <div class='transcript-title'>
+      文字起こし機能
+    </div>
+    <div class="transcript-info">
+      タイトル：<%= @transcript.name %><br>
+      送信日時：<%= @transcript.created_at.strftime('%Y-%m-%d %H:%M') %>
+    </div>
+    <div class="transcript-text">
+      <%= @transcript.transcript %>
+    </div>
+    <input type="button" class="copy-btn" id="copy-btn" value="テキストコピーする">
+    <textarea id="copy-text"><%= @transcript.transcript %></textarea>
+  </div>
+</div>

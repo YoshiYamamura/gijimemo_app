@@ -13,5 +13,6 @@ class User < ApplicationRecord
 
   has_many :meetings
   has_many :access_permits
+  has_many :transcripts
   has_one :profile
 end

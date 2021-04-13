@@ -1,0 +1,31 @@
+<div class='wrapper'>
+  <div class='side-bar'>
+    <%= render 'meetings/side_bar' %>
+  </div>
+  <div class='main-screen'>
+    <div class='transcript-title'>
+      文字起こし機能
+    </div>
+    <%= form_with model: @transcript, local: true do |f| %>
+      <%= render 'shared/error_messages', model: f.object %>
+      <div class="title">
+        <%= f.label :name, 'タイトル（打合せ名など）', for: 'transcript-title'%><br>
+        <%= f.text_field :name, id: 'transcript-title' %>
+      </div>
+      <div class="audio-data">
+        <%= f.label :voice_data, '音声データ', for: 'transcript-voice-data'%><br>
+        <p>FLAC, MP3, WAVファイルに対応しています</p>
+        <%= f.file_field :voice_data, id: 'transcript-voice-data', accept: 'audio/flac, audio/mpeg, audio/wav'%>
+      </div>
+      <div class="audio-data">
+        <%= f.label :samplerate, 'サンプリングレート', for: 'sample-rate' %><br>
+        <p>16,000Hz(16kHz)以上を推奨します</p>
+        <%= f.text_field :samplerate, id: 'sample-rate', value: 16000 %><span id="sample-rate-khz"> Hz(16kHz)</span>
+      </div>
+      <audio id="audio-player" controls></audio>
+      <%= f.hidden_field :transcript, value: "#" %>
+      <%= f.hidden_field :status, value: 0 %>
+      <%= f.submit "送信する", class: 'submit-btn' %>
+    <% end %>
+  </div>
+</div>

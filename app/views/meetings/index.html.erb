@@ -23,7 +23,9 @@
       <div class='index-title'>
         文字起こしデータ
       </div>
-
+      <div class='meetings'>
+        <%= render partial: "transcript_list", locals: { transcripts: @transcripts } %>
+      </div>
     </div>
   </div>
 </div>

@@ -66,6 +66,7 @@ Things you may want to cover:
 ## transcriptsテーブル
 |Column    |Type      |Options                       |
 |----------|----------|------------------------------|
+|name      |string    |null: false                   |
 |transcript|text      |null: false                   |
 |status    |integer   |null: false                   |
 |user      |references|null: false, foreign_key: true|

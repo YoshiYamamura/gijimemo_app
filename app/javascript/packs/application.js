@@ -9,6 +9,8 @@ require("@rails/activestorage").start()
 require("channels")
 require("../access_permits_select")
 require("../meeting_select")
+require("../transcript")
+require("../text_copy")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
