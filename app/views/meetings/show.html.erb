@@ -35,5 +35,32 @@
       打合せ内容
       <p><%= @meeting.speech %></p>
     </div>
+    <div class='comment-area'>
+      <div class='comment-form'>
+        <%= form_with model: [@meeting, @reaction], local: true do |f| %>
+          <%= f.text_area :comment, placeholder: "コメントする", rows: "5" %><br>
+          <%= f.submit "送信する", class: "submit-btn" %>
+        <% end %>
+      </div>
+      <div class='comments-show'>
+        コメント一覧
+        <% @reactions.each do |reaction| %>
+          <div class='comment'>
+            <div class='comment-text'>
+              <strong>
+                <%= link_to reaction.user.nickname, "/profiles/#{reaction.user_id}" %>
+                <%= "（作成者）" if current_user.id == @meeting.user_id %>：
+              </strong>
+              <%= reaction.comment %>
+            </div>
+            <div class='comment-menu'>
+              <% if current_user.id == reaction.user_id %>
+                <%= link_to '削除', "/meetings/#{@meeting.id}/reactions/#{reaction.id}", method: :delete, data: { confirm: "本当に削除しますか？削除したデータは戻すことが出来ません。" } %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

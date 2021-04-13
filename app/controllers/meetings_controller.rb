@@ -51,6 +51,8 @@ class MeetingsController < ApplicationController
     access_permits.each do |access_permit|
       @permitted_users << User.find(access_permit.user_id)
     end
+    @reaction = Reaction.new
+    @reactions = @meeting.reactions.includes(:user)
   end
 
   private
