@@ -1,43 +1,51 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 名称
+Giji-memo
 
-Things you may want to cover:
+## 概要
+議事録の作成を省力化、他ユーザーと議事録を共有出来る業務支援アプリケーション
 
-* Ruby version
+## 制作背景
+様々なビジネスにおいて、会議や打ち合わせの議事録作成は付き物です。重要な意思決定を記録に残し、共有するための大切な書類ですが、作成に思わぬ時間がかかり通常業務の時間を圧迫している方もいるのではないでしょうか。また、作成した議事録を紙で回覧していると期間が経ってしまい、最後に読む上司の方は話の細かな内容について記憶が薄らいでしまっている、ということも有るかもしれません。
 
-* System dependencies
+このアプリケーションは、そのような課題を解決するために**議事録作成の省力化** **スピーディな共有**を目的として制作しています。
 
-* Configuration
+録音した音声データがあれば、自動でテキストに変換します。MP3, FLAC, WAVのファイル形式に対応し、1ファイルあたり最大480分間の音声データを使用できます。ICレコーダーやスマートフォンからの録音、Web会議サービスの録音機能などを使ってお試しください。
+また、作成した議事録は任意のユーザーと共有し、コメントをつけて議事録の内容についてレビューをもらうことができます。
 
-* Database creation
+## 開発環境
+### サーバーサイド
+Ruby 2.6.5, Ruby on Rails 6
 
-* Database initialization
+### フロントエンド
+HTML, CSS, Javascript, Ajax
 
-* How to run the test suite
+### インフラ
+GCS
 
-* Services (job queues, cache servers, search engines, etc.)
+## 今後の課題、実装予定
+
+* 現在、音声データからテキストへの変換は日本語モードのみとなっています。今後、日本語と英語を選択する機能を実装予定です。
+* 音声データのサンプリングレート（1秒あたりの音のサンプリング数。標準的な設定では44.1kHzで録音されることが多いです）を手動設定する仕様となっています。今後、送信データに基づいて自動設定するよう修正する予定です。
+* 議事録の一覧表示画面が、作成日順に全表示される仕様となっています。検索機能、ソート機能を追加予定です。
 
-* Deployment instructions
-
-# テーブル設計
-
-## usersテーブル
+## DB設計
+### usersテーブル
 |Column            |Type  |Options                  |
 |------------------|------|-------------------------|
 |nickname          |string|null: false              |
 |encrypted_password|string|null: false              |
 |email             |string|null: false, unique: true|
 
-### Association
+#### Association
 - has_many :meetings
 - has_many :access_permits
 - has_many :transcripts
 - has_many :reactions
 - has_one  :profile
 
-## meetingsテーブル
+### meetingsテーブル
 |Column      |Type      |Options                       |
 |------------|----------|------------------------------|
 |name        |string    |null: false                   |
@@ -48,22 +56,22 @@ Things you may want to cover:
 |speech      |text      |                              |
 |user        |references|null: false, foreign_key: true|
 
-### Association
+#### Association
 - belongs_to :user
 - has_many :access_permits
 - has_many :reactions
 
-## access_permitsテーブル
+### access_permitsテーブル
 |Column |Type      |Options                       |
 |-------|----------|------------------------------|
 |user   |references|null: false, foreign_key: true|
 |meeting|references|null: false, foreign_key: true|
 
-### Association
+#### Association
 - belongs_to :user
 - belongs_to :meeting
 
-## transcriptsテーブル
+### transcriptsテーブル
 |Column    |Type      |Options                       |
 |----------|----------|------------------------------|
 |name      |string    |null: false                   |
@@ -71,21 +79,21 @@ Things you may want to cover:
 |status    |integer   |null: false                   |
 |user      |references|null: false, foreign_key: true|
 
-### Association
+#### Association
 - belongs_to :user
 
-## reactionsテーブル
+### reactionsテーブル
 |Column |Type      |Options                       |
 |-------|----------|------------------------------|
 |comment|text      |null: false                   |
 |user   |references|null: false, foreign_key: true|
 |meeting|references|null: false, foreign_key: true|
 
-### Association
+#### Association
 - belongs_to :user
 - belongs_to :meeting
 
-## profilesテーブル
+### profilesテーブル
 |Column           |Type  |Options                  |
 |-----------------|------|-------------------------|
 |family_name      |string|                         |
@@ -93,5 +101,5 @@ Things you may want to cover:
 |belonging        |string|                         |
 |self_introduction|text  |                         |
 
-### Association
+#### Association
 - belongs_to :user
