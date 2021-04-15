@@ -49,7 +49,7 @@
             <div class='comment-text'>
               <strong>
                 <%= link_to reaction.user.nickname, "/profiles/#{reaction.user_id}" %>
-                <%= "（作成者）" if current_user.id == @meeting.user_id %>：
+                <%= "（作成者）" if reaction.user_id == @meeting.user_id %>：
               </strong>
               <%= reaction.comment %>
             </div>
