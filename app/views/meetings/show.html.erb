@@ -24,9 +24,9 @@
           <p><%= @meeting.attendance %></p>
         </div>
         <div class='meeting-content-group'>
-          議事録共有ユーザー
+          議事録共有ユーザー<br>
           <% @permitted_users.each do |permitted_user| %>
-            <p><%= permitted_user.nickname %></p>
+            <%= "#{permitted_user.nickname}" %><span><%= "(#{permitted_user.profile.family_name} #{permitted_user.profile.first_name}; #{permitted_user.profile.belonging})" %></span>
           <% end %>
         </div>
       </div>
