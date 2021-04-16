@@ -1,5 +1,6 @@
 class TranscriptsController < ApplicationController
   before_action :set_transcript, only: [:show, :destroy]
+  before_action :identificate_user, only: [:show, :destroy]
 
   def new
     @transcript = Transcript.new
@@ -59,5 +60,9 @@ class TranscriptsController < ApplicationController
     else
       @transcript.update_attributes(status: 1, transcript: @text)
     end
+  end
+
+  def identificate_user
+    redirect_to root_path if current_user.id != @transcript.user_id
   end
 end

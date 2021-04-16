@@ -1,6 +1,6 @@
 class AccessPermitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :access_permitted, only: [:index, :create]
+  before_action :access_permitted
   before_action :identificate_user
 
   def index

@@ -46,11 +46,7 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @permitted_users = []
-    access_permits = AccessPermit.where(meeting: params[:id])
-    access_permits.each do |access_permit|
-      @permitted_users << User.find(access_permit.user_id)
-    end
+    access_permitted_user
     @reaction = Reaction.new
     @reactions = @meeting.reactions.includes(:user)
   end
@@ -71,5 +67,17 @@ class MeetingsController < ApplicationController
 
   def identificate_user
     redirect_to root_path if current_user.id != @meeting.user_id
+  end
+
+  def access_permitted_user
+    access_permits = AccessPermit.where(meeting: params[:id])
+    @permitted_users = []
+    result = 0
+    access_permits.each do |access_permit|
+      @permitted_users << User.find(access_permit.user_id)
+      result = 1 if current_user.id == access_permit.user_id
+    end
+    result = 1 if current_user.id == @meeting.user_id
+    redirect_to root_path if result != 1
   end
 end

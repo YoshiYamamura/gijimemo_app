@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile, only: [:edit, :update]
+  before_action :identificate_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -45,4 +46,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
   end
 
+  def identificate_user
+    redirect_to root_path if current_user.id != @profile.user_id
+  end
 end
