@@ -27,7 +27,7 @@ class TranscriptsController < ApplicationController
   private
 
   def transcript_params
-    params.require(:transcript).permit(:name, :transcript, :status, :voice_data, :samplerate).merge(user_id: current_user.id)
+    params.require(:transcript).permit(:name, :voice_data, :samplerate).merge(user_id: current_user.id, transcript: "#", status: 0,)
   end
 
   def set_transcript
