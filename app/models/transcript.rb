@@ -12,5 +12,6 @@ class Transcript < ApplicationRecord
     validates :transcript
     validates :status
     validates :voice_data, file_content_type: { allow: audiofile_mime_types, message: message_mime_types }
+    validates :samplerate, numericality: { only_integer: true, message: 'は、半角整数値で入力してください' }
   end
 end
