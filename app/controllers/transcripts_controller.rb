@@ -45,20 +45,19 @@ class TranscriptsController < ApplicationController
                enable_automatic_punctuation: true }            #句読点挿入機能
     audio = { uri: storage_path }
   
-    operation = speech.long_running_recognize config: config, audio: audio
-    operation.wait_until_done!
-  
-    results = operation.response.results
-    @text = "音声文字変換結果："
-    results.each do |result|
-      alternatives = result.alternatives
-      @text += "#{alternatives.first.transcript}"
-    end
-
-    if operation.error?
-      @transcript.update_attributes(status: -1)
-    else
+    begin
+      operation = speech.long_running_recognize config: config, audio: audio
+      operation.wait_until_done!
+      results = operation.response.results
+      @text = "音声文字変換結果：\n"
+      results.each do |result|
+        alternatives = result.alternatives
+        @text += "#{alternatives.first.transcript}"
+      end
       @transcript.update_attributes(status: 1, transcript: @text)
+    rescue => e
+      @transcript.update_attributes(status: -1)
+      @text = "エラーが発生しました：\n#{e.message}"
     end
   end
 
