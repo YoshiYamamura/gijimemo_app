@@ -20,7 +20,7 @@
       <div class="audio-data">
         <%= f.label :samplerate, 'サンプリングレート', for: 'sample-rate' %><br>
         <p>16,000Hz(16kHz)以上を推奨します</p>
-        <%= f.text_field :samplerate, id: 'sample-rate', value: 44100 %><span id="sample-rate-khz"> Hz(44.1kHz)</span>
+        <%= f.number_field :samplerate, id: 'sample-rate', value: 44100, step: 100 %><span id="sample-rate-khz"> Hz(44.1kHz)</span>
       </div>
       <audio id="audio-player" controls></audio>
       <%= f.submit "送信する", class: 'submit-btn' %>
