@@ -14,13 +14,13 @@
       </div>
       <div class="audio-data">
         <%= f.label :voice_data, '音声データ', for: 'transcript-voice-data'%><br>
-        <p>FLAC, MP3, WAVファイルに対応しています</p>
-        <%= f.file_field :voice_data, id: 'transcript-voice-data', accept: 'audio/flac, audio/mpeg, audio/wav'%>
-      </div>
-      <div class="audio-data">
-        <%= f.label :samplerate, 'サンプリングレート', for: 'sample-rate' %><br>
-        <p>16,000Hz(16kHz)以上を推奨します</p>
-        <%= f.number_field :samplerate, id: 'sample-rate', value: 44100, step: 100 %><span id="sample-rate-khz"> Hz(44.1kHz)</span>
+        <p>・ファイル形式は、FLAC・MP3・WAVに対応しています。</p>
+        <p>・サンプリングレートは、8,000Hz(8kHz)〜48,000Hz(48kHz)の間で録音する必要があります。</p>
+        <p> - 最良の結果を得る為には、16,000Hz(16kHz)にて録音ください。</p>
+        <p> - 録音後のサンプリングレート変更は、エラーの原因となります。</p>
+        <%= f.file_field :voice_data, id: 'transcript-voice-data', accept: 'audio/flac, audio/mpeg, audio/wav'%><br>
+        <%= f.label :samplerate, 'サンプリングレート', for: 'sample-rate' %>
+        <%= f.number_field :samplerate, id: 'sample-rate', value: 44100, step: 10 %><span id="sample-rate-khz"> Hz(44.1kHz)</span>
       </div>
       <audio id="audio-player" controls></audio>
       <%= f.submit "送信する", class: 'submit-btn' %>
