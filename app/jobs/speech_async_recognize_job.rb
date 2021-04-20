@@ -7,12 +7,12 @@ class SpeechAsyncRecognizeJob < ApplicationJob
     exit
   end
 
-  def perform(transcript, samplerate)
+  def perform(transcript, samplerate, language)
     require "google/cloud/speech"
     speech = Google::Cloud::Speech.speech
 
     storage_path = "gs://gijimemo_bucket/#{transcript.voice_data.key}"
-    config = { language_code:     "ja-JP",                  #言語設定：日本語
+    config = { language_code:     language,                 #言語設定：日本語または英語
                encoding:          :ENCODING_UNSPECIFIED,    #エンコーディング：FLAC、WAVの時は省略可
                sample_rate_hertz: samplerate.to_i,          #サンプリングレート：FLAC、WAVの時は省略可
                enable_automatic_punctuation: true }         #句読点挿入機能

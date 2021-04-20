@@ -9,7 +9,7 @@ class TranscriptsController < ApplicationController
   def create
     @transcript = Transcript.new(transcript_params)
     if @transcript.save
-      SpeechAsyncRecognizeJob.perform_later(@transcript, transcript_params[:samplerate])
+      SpeechAsyncRecognizeJob.perform_later(@transcript, transcript_params[:samplerate], transcript_params[:language])
       redirect_to root_path
     else
       render :new
@@ -27,7 +27,7 @@ class TranscriptsController < ApplicationController
   private
 
   def transcript_params
-    params.require(:transcript).permit(:name, :voice_data, :samplerate).merge(user_id: current_user.id, transcript: "#", status: 0,)
+    params.require(:transcript).permit(:name, :voice_data, :samplerate, :language).merge(user_id: current_user.id, transcript: "#", status: 0,)
   end
 
   def set_transcript

@@ -26,8 +26,8 @@
       </div>
       <div class="audio-data">
         言語選択<br>
-        <label><%= f.radio_button :language, "Japanese", checked: true %>日本語 Japanese</label>
-        <label><%= f.radio_button :language, "English" %>英語 English</label>
+        <label><%= f.radio_button :language, "ja-JP", checked: true %>日本語 Japanese</label>
+        <label><%= f.radio_button :language, "en-US" %>英語 English</label>
       </div>
       <audio id="audio-player" controls></audio>
       <%= f.submit "送信する", class: 'submit-btn' %>
