@@ -21,10 +21,6 @@
         <%= f.file_field :voice_data, id: 'transcript-voice-data', accept: 'audio/flac, audio/mpeg, audio/wav'%>
       </div>
       <div class="audio-data">
-        <%= f.label :samplerate, 'サンプリングレート', for: 'sample-rate' %><br>
-        <%= f.number_field :samplerate, id: 'sample-rate', value: 44100, min: 8000, max: 48000, step: 10 %><span id="sample-rate-khz"> Hz(44.1kHz)</span><br>
-      </div>
-      <div class="audio-data">
         言語選択<br>
         <label><%= f.radio_button :language, "ja-JP", checked: true %>日本語 Japanese</label>
         <label><%= f.radio_button :language, "en-US" %>英語 English</label>
