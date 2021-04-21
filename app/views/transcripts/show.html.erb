@@ -13,6 +13,7 @@
     <div class="transcript-text">
       <%= @transcript.transcript %>
     </div>
+    <audio id="audio-player" controls src="<%= url_for(@transcript.voice_data) %>"></audio>
     <input type="button" class="copy-btn" id="copy-btn" value="テキストコピーする">
     <textarea id="copy-text"><%= @transcript.transcript %></textarea>
   </div>
