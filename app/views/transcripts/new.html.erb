@@ -25,6 +25,10 @@
         <label><%= f.radio_button :language, "ja-JP", checked: true %>日本語 Japanese</label>
         <label><%= f.radio_button :language, "en-US" %>英語 English</label>
       </div>
+      <div class="audio-data">
+        会話の人数<br>
+        <%= f.select :number_of_people, options_for_select([['1人', 1], ['2人', 2], ['3人', 3], ['4人', 4], ['5人', 5], ['6人以上', 6]]) %>
+      </div>
       <audio id="audio-player" controls></audio>
       <%= f.submit "送信する", class: 'submit-btn' %>
     <% end %>
