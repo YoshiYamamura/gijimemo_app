@@ -3,6 +3,7 @@
     <%= render 'side_bar' %>
   </div>
   <div class='main-screen'>
+    <%= flash[:notice] %>
     <div class='upper-index'>
       <div class='index-title'>
         <%= current_user.nickname %>さんが作成した議事録

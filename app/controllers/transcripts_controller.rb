@@ -11,7 +11,7 @@ class TranscriptsController < ApplicationController
     if @transcript.save
       samplerate, channels = read_audiofile
       SpeechAsyncRecognizeJob.perform_later(@transcript, transcript_params[:language], samplerate, channels)
-      redirect_to root_path
+      redirect_to root_path, notice: "#{@transcript.name} を送信しました。完了までしばらくお待ちください。"
     else
       render :new
     end
@@ -22,7 +22,7 @@ class TranscriptsController < ApplicationController
 
   def destroy
     @transcript.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: "#{@transcript.name} を削除しました。"
   end
 
   private

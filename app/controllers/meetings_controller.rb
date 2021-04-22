@@ -23,7 +23,7 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(meeting_params)
     if @meeting.save
-      redirect_to root_path, notice: "議事録 #{@meeting.name}を登録しました。"
+      redirect_to root_path, notice: "#{@meeting.name} を新規作成しました。"
     else
       render :new
     end
@@ -34,7 +34,7 @@ class MeetingsController < ApplicationController
 
   def update
     if @meeting.update(meeting_params)
-      redirect_to root_path
+      redirect_to root_path, notice: "#{@meeting.name} を編集しました。"
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class MeetingsController < ApplicationController
 
   def destroy
     @meeting.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: "#{@meeting.name} を削除しました。"
   end
 
   def show
