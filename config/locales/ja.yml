@@ -1,0 +1,31 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+      profile:
+        family_name: ご氏名（苗字）
+        first_name: ご氏名（名前）
+        belonging: 所属
+        self_introduction: 自己紹介文
+      meeting:
+        name: 打合せ名称
+        meeting_date: 打合せ日
+        meeting_time: 打合せ時刻
+        place: 打合せ場所
+        attendance: 出席者
+        speech: 議事内容
+        user_id: 作成者
+        voice_data: 音声データ
+      access_permit:
+        meeting_id: 打合せ
+        user_id: ユーザー
+      transcript:
+        name: タイトル
+        transcript: 変換テキスト
+        status: 状態
+        user_id: 作成者
+      reaction:
+        comment: タイトル
+        meeting_id: 打合せ
+        user_id: ユーザー
