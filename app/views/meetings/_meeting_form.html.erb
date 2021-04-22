@@ -1,5 +1,5 @@
     <%= form_with model: meeting, class: 'meeting-main', local: true do |f| %>
-      <%# render "shared/error_messages", resource: resource %>
+      <%= render 'shared/error_messages', model: f.object %>
       <div class='upper'>
         <div class='upper-left'>
           <div class='meeting-form-group meeting-name'>

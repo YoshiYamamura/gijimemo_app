@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :password, format: { with: alphabet_number_mix_8 }
+    validates :password, format: { with: alphabet_number_mix_8, message: "は、半角のアルファベットと数字を混合して8文字以上で設定してください" }
   end
 
   has_many :meetings

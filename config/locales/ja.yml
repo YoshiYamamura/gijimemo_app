@@ -16,7 +16,6 @@ ja:
         attendance: 出席者
         speech: 議事内容
         user_id: 作成者
-        voice_data: 音声データ
       access_permit:
         meeting_id: 打合せ
         user_id: ユーザー
@@ -24,6 +23,7 @@ ja:
         name: タイトル
         transcript: 変換テキスト
         status: 状態
+        voice_data: 音声データ
         user_id: 作成者
       reaction:
         comment: タイトル

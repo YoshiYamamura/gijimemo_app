@@ -3,7 +3,7 @@
     ユーザー新規登録
   </div>
   <%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render 'shared/error_messages', model: f.object %>
 
     <div class='registration-form-group'>
       <div>
