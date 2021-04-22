@@ -25,11 +25,29 @@ class SpeechAsyncRecognizeJob < ApplicationJob
     raise operation.results.message if operation.error?
 
     results = operation.response.results
-    text = "音声文字変換結果：\n"
-    results.each do |result|
-      alternatives = result.alternatives
-      text += "#{alternatives.first.transcript}"
+    text = "音声文字変換結果："
+
+    if channels == 1
+      #モノラル音声の場合
+      results.each do |result|
+        alternatives = result.alternatives
+        text += "#{alternatives.first.transcript}"
+      end
+    else
+      #ステレオ音声の場合：チャンネル毎に区切って出力
+      before_channel_number = 0
+      results.each do |result|
+        this_channel_number = result.channel_tag
+        alternatives = result.alternatives
+        if before_channel_number == this_channel_number
+          text += "#{alternatives.first.transcript}"
+        else
+          text += "\nNo.#{this_channel_number}：#{alternatives.first.transcript}"
+        end
+        before_channel_number = this_channel_number
+      end
     end
+
     transcript.update(status: 1, transcript: text)
   end
 end
