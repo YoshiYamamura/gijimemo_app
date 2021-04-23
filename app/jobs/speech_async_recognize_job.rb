@@ -12,20 +12,24 @@ class SpeechAsyncRecognizeJob < ApplicationJob
     speech = Google::Cloud::Speech.speech
 
     storage_path = "gs://gijimemo_bucket/#{transcript.voice_data.key}"
-    diarization_config = {
-      enable_speaker_diarization:              true,                  #話者毎に認識
-      max_speaker_count:                       number_of_people,      #話者の最大人数
-      min_speaker_count:                       number_of_people       #話者の最小人数
-    }
+
     config = {
       language_code:                           language,              #言語設定：日本語または英語
       encoding:                                :ENCODING_UNSPECIFIED, #エンコーディング：FLAC、WAVの時は省略可
       sample_rate_hertz:                       samplerate,            #サンプリングレート：FLAC、WAVの時は省略可
       audio_channel_count:                     channels,              #チャンネル数（モノラル・ステレオ）
       enable_separate_recognition_per_channel: true,                  #チャンネル毎に認識
-      diarization_config:                      diarization_config,    #話者認識コンフィグ
       enable_automatic_punctuation:            true                   #句読点挿入機能
     }
+    #話者が複数人の場合、話者認識機能をONにする
+    if number_of_people != 1
+      diarization_config = {
+        enable_speaker_diarization:            true,                  #話者毎に認識
+        max_speaker_count:                     number_of_people,      #話者の最大人数
+        min_speaker_count:                     number_of_people       #話者の最小人数
+      }
+      config[:diarization_config] = diarization_config
+    end
     audio = { uri: storage_path }
 
     operation = speech.long_running_recognize config: config, audio: audio
@@ -37,9 +41,26 @@ class SpeechAsyncRecognizeJob < ApplicationJob
     binding.pry
     if channels == 1
       #モノラル音声の場合
+      before_speaker_number = 0 if number_of_people != 1
       results.each do |result|
         alternatives = result.alternatives
-        text += "#{alternatives.first.transcript}"
+        if number_of_people != 1
+          #話者が複数人（話者認識機能ON）の場合、word単位で話者を確認して出力
+          wordsinfo = alternatives.first.words
+          wordsinfo.each do |wordinfo|
+            this_speaker_number = wordinfo.speaker_tag
+            if this_speaker_number != 0
+              #speaker_tagが0の情報は、話者を識別していないtranscript単位の情報のため無視する
+              word_text = wordinfo.word
+              text += "\nNo.#{this_speaker_number}：" if before_speaker_number != this_speaker_number
+              before_speaker_number = this_speaker_number
+              text += " #{word_text}"
+            end
+          end
+        else
+          #話者が１人（話者認識機能OFF）の場合、transcript単位で出力
+          text += "#{alternatives.first.transcript}"
+        end
       end
     else
       #ステレオ音声の場合：チャンネル毎に区切って出力
