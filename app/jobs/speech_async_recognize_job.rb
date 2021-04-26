@@ -38,45 +38,49 @@ class SpeechAsyncRecognizeJob < ApplicationJob
 
     results = operation.response.results
     text = "音声文字変換結果："
-    binding.pry
-    if channels == 1
-      #モノラル音声の場合
-      before_speaker_number = 0 if number_of_people != 1
-      results.each do |result|
-        alternatives = result.alternatives
-        if number_of_people != 1
-          #話者が複数人（話者認識機能ON）の場合、word単位で話者を確認して出力
-          wordsinfo = alternatives.first.words
-          wordsinfo.each do |wordinfo|
-            this_speaker_number = wordinfo.speaker_tag
-            if this_speaker_number != 0
-              #speaker_tagが0の情報は、話者を識別していないtranscript単位の情報のため無視する
-              word_text = wordinfo.word
-              text += "\nNo.#{this_speaker_number}：" if before_speaker_number != this_speaker_number
-              before_speaker_number = this_speaker_number
-              text += " #{word_text}"
+
+    before_channel_number = 0 if channels != 1
+    before_speaker_number = 0 if number_of_people != 1
+    
+    results.each do |result|
+      alternatives = result.alternatives
+      this_channel_number = result.channel_tag if channels != 1
+
+      if number_of_people != 1
+        #話者が複数人（話者認識機能ON）の場合、word単位で話者を確認して出力
+        wordsinfo = alternatives.first.words
+        wordsinfo.each do |wordinfo|
+          this_speaker_number = wordinfo.speaker_tag
+          if this_speaker_number != 0
+            #speaker_tagが0の情報は、話者を識別していないtranscript単位の情報のため無視する
+            if (before_channel_number != this_channel_number) && channels != 1
+              #ステレオ音声の場合、チャンネルの変わり目に区切りを挿入
+              text += "\n===== Channel No.#{this_channel_number} =====\n"
+              before_channel_number = this_channel_number
+              before_speaker_number = 0
             end
+            if language == "ja-JP"
+              #日本語は「かな漢字変換|カタカナ」の形式、かな漢字のみ抽出する
+              word_text = wordinfo.word.split(sep="|")[0]
+            else
+              #英語はwordの前にスペースを挿入
+              word_text = " " + wordinfo.word
+            end
+            text += "\nSpeaker No.#{this_speaker_number}：" if before_speaker_number != this_speaker_number
+            before_speaker_number = this_speaker_number
+            text += word_text
           end
-        else
-          #話者が１人（話者認識機能OFF）の場合、transcript単位で出力
-          text += "#{alternatives.first.transcript}"
         end
-      end
-    else
-      #ステレオ音声の場合：チャンネル毎に区切って出力
-      before_channel_number = 0
-      results.each do |result|
-        this_channel_number = result.channel_tag
-        alternatives = result.alternatives
-        if before_channel_number == this_channel_number
-          text += "#{alternatives.first.transcript}"
-        else
-          text += "\nNo.#{this_channel_number}：#{alternatives.first.transcript}"
+      else
+        #話者が１人（話者認識機能OFF）の場合、transcript単位で出力
+        if (before_channel_number != this_channel_number) && channels != 1
+          #ステレオ音声の場合、チャンネルの変わり目に区切りを挿入
+          text += "\n===== Channel No.#{this_channel_number} =====\n"
+          before_channel_number = this_channel_number
         end
-        before_channel_number = this_channel_number
+        text += "#{alternatives.first.transcript}"
       end
     end
-
     transcript.update(status: 1, transcript: text)
   end
 end
