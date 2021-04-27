@@ -10,7 +10,7 @@ class TranscriptsController < ApplicationController
     @transcript = Transcript.new(transcript_params)
     if @transcript.save
       samplerate, channels = read_audiofile
-      SpeechAsyncRecognizeJob.perform_later(@transcript, transcript_params[:language], transcript_params[:number_of_people].to_i, samplerate, channels)
+      SpeechAsyncRecognizeJob.perform_later(@transcript, transcript_params[:language], transcript_params[:sub_language].to_i, transcript_params[:number_of_people].to_i, samplerate, channels)
       redirect_to root_path, notice: "#{@transcript.name} を送信しました。完了までしばらくお待ちください。"
     else
       render :new
@@ -28,7 +28,7 @@ class TranscriptsController < ApplicationController
   private
 
   def transcript_params
-    params.require(:transcript).permit(:name, :voice_data, :language, :number_of_people).merge(user_id: current_user.id, transcript: "#", status: 0,)
+    params.require(:transcript).permit(:name, :voice_data, :language, :sub_language, :number_of_people).merge(user_id: current_user.id, transcript: "#", status: 0,)
   end
 
   def set_transcript
