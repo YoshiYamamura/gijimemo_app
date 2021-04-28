@@ -8,8 +8,10 @@ class SpeechAsyncRecognizeJob < ApplicationJob
   end
 
   def perform(transcript, language, sub_language, number_of_people, samplerate, channels)
-    require "google/cloud/speech"
-    speech = Google::Cloud::Speech.speech
+    #require "google/cloud/speech"
+    #speech = Google::Cloud::Speech.speech
+    require "google/cloud/speech/v1p1bata1"
+    speech = ::Google::Cloud::Speech::V1p1beta1::Speech::Client.new
 
     storage_path = "gs://gijimemo_bucket/#{transcript.voice_data.key}"
 
