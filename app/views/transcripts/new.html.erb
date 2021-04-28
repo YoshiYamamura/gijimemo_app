@@ -21,10 +21,9 @@
         <%= f.file_field :voice_data, id: 'transcript-voice-data', accept: 'audio/flac, audio/mpeg, audio/wav'%>
       </div>
       <div class="audio-data">
-        メイン言語選択<br>
+        言語選択<br>
         <label><%= f.radio_button :language, "ja-JP", checked: true %>日本語 Japanese</label>
-        <label><%= f.radio_button :language, "en-US" %>英語 English</label><br>
-        <label><%= f.check_box :sub_language %>日本語・英語の両方を含んでいる</label>
+        <label><%= f.radio_button :language, "en-US" %>英語 English</label>
       </div>
       <div class="audio-data">
         会話の人数<br>

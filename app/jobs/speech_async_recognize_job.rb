@@ -7,7 +7,7 @@ class SpeechAsyncRecognizeJob < ApplicationJob
     exit
   end
 
-  def perform(transcript, language, sub_language, number_of_people, samplerate, channels)
+  def perform(transcript, language, number_of_people, samplerate, channels)
     require "google/cloud/speech"
     speech = Google::Cloud::Speech.speech
 
@@ -29,12 +29,6 @@ class SpeechAsyncRecognizeJob < ApplicationJob
         min_speaker_count:                     number_of_people       #話者の最小人数
       }
       config[:diarization_config] = diarization_config
-    end
-    #日本語・英語を両方含む音声の場合、alternativeLanguageを指定する
-    if sub_language == 1
-      sub_language = ["ja-JP", "en-US"]
-      sub_language.delete(language)
-      config[:alternative_language_codes] = sub_language
     end
     audio = { uri: storage_path }
 
