@@ -376,7 +376,6 @@ DEPENDENCIES
   faker
   file_validators
   google-cloud-speech (~> 1.2)
-  google-cloud-speech-v1p1beta1 (~> 0.7.0)
   google-cloud-storage (~> 1.31)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
