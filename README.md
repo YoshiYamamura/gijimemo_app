@@ -7,7 +7,7 @@ Giji-memo
 議事録の作成を省力化、他ユーザーと議事録を共有出来る業務支援アプリケーション
 
 ## 本番環境
-https://gijimemo-app.herokuapp.com/ (Basic認証があります)
+https://gijimemo-app.herokuapp.com/
 
 テストアカウント guestuser1
 - Email: guestuser-1@test.com
