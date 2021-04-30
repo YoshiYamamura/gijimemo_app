@@ -9,8 +9,8 @@ class TranscriptsController < ApplicationController
   def create
     @transcript = Transcript.new(transcript_params)
     if @transcript.save
-      samplerate, channels = read_audiofile
-      SpeechAsyncRecognizeJob.perform_later(@transcript, transcript_params[:language], transcript_params[:number_of_people].to_i, samplerate, channels)
+      read_audiofile
+      SpeechAsyncRecognizeJob.perform_later(@transcript, transcript_params[:language], transcript_params[:number_of_people].to_i, @samplerate, @channels)
       redirect_to root_path, notice: "#{@transcript.name} を送信しました。完了までしばらくお待ちください。"
     else
       render :new
@@ -42,7 +42,23 @@ class TranscriptsController < ApplicationController
   def read_audiofile
     @transcript.voice_data.open do |audiofile|
       AudioInfo.open(audiofile) do |info|
-        return info.info.duration.sample_rate, info.info.channels
+        case info.extension
+        when "wav"
+          @samplerate = info.info.sample_rate
+          @channels = info.info.channels
+        when "mp3"
+          @samplerate = info.info.samplerate
+          case info.info.channel_mode
+          when "Single Channel"
+            @channels = 1
+          when "Stereo", "JStereo"
+            @channels = 2
+          end
+        when "flac"
+          flacinfo = FlacInfo.new(audiofile)
+          @samplerate = flacinfo.streaminfo.samplerate
+          @channels = flacinfo.streaminfo.channels
+        end
       end
     end
   end
