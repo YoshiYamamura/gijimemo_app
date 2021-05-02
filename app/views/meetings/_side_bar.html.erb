@@ -9,12 +9,21 @@
     <div class='menu-btn'>
       <%= link_to '新規作成', new_meeting_path %>
     </div>
-    <div class='menu-btn disabled' id='edit-btn'>
-      <%= link_to '編集', '#', id: "edit_btn_link" %>
-    </div>
-    <div class='menu-btn disabled' id='delete-btn'>
-      <%= link_to '削除', '#', method: :delete, data: { confirm: "本当に削除しますか？削除したデータは戻すことが出来ません。" }, id: "delete_btn_link" %>
-    </div>
+    <% if @reaction.present? && current_user.id == @meeting.user_id %>
+      <div class='menu-btn' id='edit-btn'>
+        <%= link_to '編集', edit_meeting_path(@meeting), id: "edit_btn_link" %>
+      </div>
+      <div class='menu-btn' id='delete-btn'>
+        <%= link_to '削除', meeting_path(@meeting), method: :delete, data: { confirm: "本当に削除しますか？削除したデータは戻すことが出来ません。" }, id: "delete_btn_link" %>
+      </div>
+    <% else %>
+      <div class='menu-btn disabled' id='edit-btn'>
+        <%= link_to '編集', '#', id: "edit_btn_link" %>
+      </div>
+      <div class='menu-btn disabled' id='delete-btn'>
+        <%= link_to '削除', '#', method: :delete, data: { confirm: "本当に削除しますか？削除したデータは戻すことが出来ません。" }, id: "delete_btn_link" %>
+      </div>
+    <% end %>
     <div class='menu-btn disabled' id='access-permit-btn'>
       <%= link_to '共有設定', '#', id: "access_permit_btn_link" %>
     </div>
