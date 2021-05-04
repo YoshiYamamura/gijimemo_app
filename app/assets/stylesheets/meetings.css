@@ -219,3 +219,13 @@ p {
   color: gray;
   font-size: 14px;
 }
+
+/* ページネーション */
+.pagination {
+  text-align: center;
+}
+.pagination a {
+  text-decoration: none;
+  color: gray;
+  font-size: 14px;
+}

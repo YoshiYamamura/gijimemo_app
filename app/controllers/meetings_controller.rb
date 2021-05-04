@@ -7,13 +7,17 @@ class MeetingsController < ApplicationController
   require "date"
 
   def index
-    @my_meetings = Meeting.where(user: current_user.id)
-    @permitted_meetings = []
+    #本人が作成した議事録
+    @my_meetings = Meeting.where(user: current_user.id).order("meeting_date DESC").page(params[:my_meetings_page]).per(5)
+    #共有設定された議事録
     access_permits = AccessPermit.where(user: current_user.id)
+    meetings = []
     access_permits.each do |access_permit|
-      @permitted_meetings << Meeting.find(access_permit.meeting_id)
+      meetings << access_permit.meeting_id
     end
-    @transcripts = Transcript.where(user: current_user.id)
+    @permitted_meetings = Meeting.where(id: meetings).order("meeting_date DESC").page(params[:permitted_meetings_page]).per(5)
+    #文字起こしデータ
+    @transcripts = Transcript.where(user: current_user.id).order("created_at DESC").page(params[:transcripts_page]).per(5)
   end
 
   def new
