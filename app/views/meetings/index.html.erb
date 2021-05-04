@@ -7,6 +7,7 @@
     <div class='upper-index'>
       <div class='index-title'>
         <%= current_user.nickname %>さんが作成した議事録
+        <%= paginate @my_meetings, param_name: :my_meetings_page, window: 2 %>
       </div>
       <div class='meetings'>
         <%= render partial: "meeting_list_create", locals: { meetings: @my_meetings } %>
@@ -15,6 +16,7 @@
     <div class='middle-index'>
       <div class='index-title'>
         閲覧できる議事録
+        <%= paginate @permitted_meetings, param_name: :permitted_meetings_page, window: 2 %>
       </div>
       <div class='meetings'>
         <%= render partial: "meeting_list_show", locals: { meetings: @permitted_meetings } %>
@@ -23,6 +25,7 @@
     <div class='lower-index'>
       <div class='index-title'>
         文字起こしデータ
+        <%= paginate @transcripts, param_name: :transcripts_page, window: 2 %>
       </div>
       <div class='meetings'>
         <%= render partial: "transcript_list", locals: { transcripts: @transcripts } %>

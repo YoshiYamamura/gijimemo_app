@@ -29,3 +29,10 @@ ja:
         comment: タイトル
         meeting_id: 打合せ
         user_id: ユーザー
+  views:
+    pagination:
+      first: "≪ 最初"
+      previous: "< 前"
+      next: "次 >"
+      last: "最後 ≫"
+      truncate: "..." 
