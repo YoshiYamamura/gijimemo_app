@@ -3,32 +3,46 @@
     <%= render 'side_bar' %>
   </div>
   <div class='main-screen'>
-    <%= flash[:notice] %>
-    <div class='upper-index'>
-      <div class='index-title'>
-        <%= current_user.nickname %>さんが作成した議事録
-        <%= paginate @my_meetings, param_name: :my_meetings_page, window: 2 %>
+    <% index = ["#{current_user.nickname}さんが作成した議事録", '閲覧できる議事録', '文字起こしデータ'] %>
+    <div class='main-header'>
+      <div class='search-form'>
+        <%= form_with url: search_meetings_path, method: :get, local: true do |f| %>
+          <%= f.select :search_content, {"検索種別を選択": 0,"#{index[0]}": 1, "#{index[1]}": 2, "#{index[2]}": 3}, {class: "search-input"} %>
+          <%= f.text_field :keyword, placeholder: "打合せ名称・タイトルを入力", class: "search-input" %>
+          <%= f.submit "検索", class: "search-btn" %>
+        <% end %>
       </div>
-      <div class='meetings'>
-        <%= render partial: "meeting_list_create", locals: { meetings: @my_meetings } %>
-      </div>
-    </div>
-    <div class='middle-index'>
-      <div class='index-title'>
-        閲覧できる議事録
-        <%= paginate @permitted_meetings, param_name: :permitted_meetings_page, window: 2 %>
-      </div>
-      <div class='meetings'>
-        <%= render partial: "meeting_list_show", locals: { meetings: @permitted_meetings } %>
+      <div class='flash-message'>
+        <%= flash[:notice] %>
       </div>
     </div>
-    <div class='lower-index'>
-      <div class='index-title'>
-        文字起こしデータ
-        <%= paginate @transcripts, param_name: :transcripts_page, window: 2 %>
+    <div class='index-container'>
+      <div class='upper-index'>
+        <div class='index-title'>
+          <%= index[0] %>
+          <%= paginate @my_meetings, param_name: :my_meetings_page, window: 2 %>
+        </div>
+        <div class='meetings'>
+          <%= render partial: "meeting_list_create", locals: { meetings: @my_meetings } %>
+        </div>
       </div>
-      <div class='meetings'>
-        <%= render partial: "transcript_list", locals: { transcripts: @transcripts } %>
+      <div class='middle-index'>
+        <div class='index-title'>
+          <%= index[1] %>
+          <%= paginate @permitted_meetings, param_name: :permitted_meetings_page, window: 2 %>
+        </div>
+        <div class='meetings'>
+          <%= render partial: "meeting_list_show", locals: { meetings: @permitted_meetings } %>
+        </div>
+      </div>
+      <div class='lower-index'>
+        <div class='index-title'>
+          <%= index[2] %>
+          <%= paginate @transcripts, param_name: :transcripts_page, window: 2 %>
+        </div>
+        <div class='meetings'>
+          <%= render partial: "transcript_list", locals: { transcripts: @transcripts } %>
+        </div>
       </div>
     </div>
   </div>
