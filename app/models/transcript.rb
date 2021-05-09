@@ -13,4 +13,12 @@ class Transcript < ApplicationRecord
     validates :status
     validates :voice_data, file_content_type: { allow: audiofile_mime_types, message: message_mime_types }
   end
+
+  def self.search(search)
+    if search != ""
+      Transcript.where('name LIKE(?)', "%#{search}%")
+    else
+      Transcript.all
+    end
+  end
 end

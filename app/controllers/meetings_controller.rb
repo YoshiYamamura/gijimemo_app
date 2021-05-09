@@ -1,23 +1,13 @@
 class MeetingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_meeting, only: [:edit, :update, :destroy, :show]
+  before_action :set_index, only: [:index, :search]
   before_action :set_this_year, only: [:new, :create, :edit, :update]
   before_action :identificate_user, only: [:edit, :update, :destroy]
 
   require "date"
 
   def index
-    #本人が作成した議事録
-    @my_meetings = Meeting.where(user: current_user.id).order("meeting_date DESC").page(params[:my_meetings_page]).per(5)
-    #共有設定された議事録
-    access_permits = AccessPermit.where(user: current_user.id)
-    meetings = []
-    access_permits.each do |access_permit|
-      meetings << access_permit.meeting_id
-    end
-    @permitted_meetings = Meeting.where(id: meetings).order("meeting_date DESC").page(params[:permitted_meetings_page]).per(5)
-    #文字起こしデータ
-    @transcripts = Transcript.where(user: current_user.id).order("created_at DESC").page(params[:transcripts_page]).per(5)
   end
 
   def new
@@ -56,17 +46,22 @@ class MeetingsController < ApplicationController
   end
 
   def search
-    #本人が作成した議事録
-    @my_meetings = Meeting.where(user: current_user.id).search(params[:keyword]).order("meeting_date DESC").page(params[:my_meetings_page]).per(5)
-    #共有設定された議事録
-    access_permits = AccessPermit.where(user: current_user.id)
-    meetings = []
-    access_permits.each do |access_permit|
-      meetings << access_permit.meeting_id
+    if params[:keyword] == ""
+      flash[:notice] = "打合せ名称・タイトルを入力してください。"
+    else
+      if params[:search_content].to_i == 1
+        @my_meetings = Meeting.where(user: current_user.id).search(params[:keyword]).order("meeting_date DESC").page(params[:my_meetings_page]).per(5)
+        flash[:notice] = ""
+      elsif params[:search_content].to_i == 2
+        @permitted_meetings = Meeting.where(id: @meetings).search(params[:keyword]).order("meeting_date DESC").page(params[:permitted_meetings_page]).per(5)
+        flash[:notice] = ""
+      elsif params[:search_content].to_i == 3
+        @transcripts = Transcript.where(user: current_user.id).search(params[:keyword]).order("created_at DESC").page(params[:transcripts_page]).per(5)
+        flash[:notice] = ""
+      else
+        flash[:notice] = "検索種別を選択してください。"
+      end
     end
-    @permitted_meetings = Meeting.where(id: meetings).order("meeting_date DESC").page(params[:permitted_meetings_page]).per(5)
-    #文字起こしデータ
-    @transcripts = Transcript.where(user: current_user.id).order("created_at DESC").page(params[:transcripts_page]).per(5)
     render :index
   end
 
@@ -78,6 +73,20 @@ class MeetingsController < ApplicationController
 
   def set_meeting
     @meeting = Meeting.find(params[:id])
+  end
+
+  def set_index
+    #本人が作成した議事録
+    @my_meetings = Meeting.where(user: current_user.id).order("meeting_date DESC").page(params[:my_meetings_page]).per(5)
+    #共有設定された議事録
+    access_permits = AccessPermit.where(user: current_user.id)
+    @meetings = []
+    access_permits.each do |access_permit|
+      @meetings << access_permit.meeting_id
+    end
+    @permitted_meetings = Meeting.where(id: @meetings).order("meeting_date DESC").page(params[:permitted_meetings_page]).per(5)
+    #文字起こしデータ
+    @transcripts = Transcript.where(user: current_user.id).order("created_at DESC").page(params[:transcripts_page]).per(5)
   end
 
   def set_this_year
