@@ -1,15 +1,16 @@
 class SpeechAsyncRecognizeJob < ApplicationJob
   queue_as :default
 
-  rescue_from(StandardError, ArgumentError, NoMethodError) do |e|
-    text = "エラーが発生しました：\n#{e.message}"
-    transcript.update(status: -1, transcript: text)
-    exit
-  end
+  # rescue_from(StandardError, ArgumentError, NoMethodError) do |e|
+  #   text = "エラーが発生しました：\n#{e.message}"
+  #   transcript.update(status: -1, transcript: text)
+  #   exit
+  # end
 
   def perform(transcript, language, number_of_people, samplerate, channels)
     require "google/cloud/speech"
     speech = Google::Cloud::Speech.speech
+    request = Google::Cloud::Speech::V1::Speech::Operations.new
 
     storage_path = "gs://gijimemo_bucket/#{transcript.voice_data.key}"
 
@@ -33,7 +34,14 @@ class SpeechAsyncRecognizeJob < ApplicationJob
     audio = { uri: storage_path }
 
     operation = speech.long_running_recognize config: config, audio: audio
-    operation.wait_until_done!
+    while !(operation.done?) do
+      puts "しばらくお待ちください"
+      operation = request.get_operation(name: operation.name)
+      puts "現在の進捗率は#{operation.metadata.progress_percent}％です"
+      sleep 10
+    end
+    #operation.wait_until_done!
+
     raise operation.results.message if operation.error?
 
     results = operation.response.results
