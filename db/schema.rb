@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_18_085754) do
+ActiveRecord::Schema.define(version: 2021_05_12_033418) do
 
   create_table "access_permits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "meeting_id"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2021_04_18_085754) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
+    t.integer "progress_percent", default: 0, null: false
     t.index ["user_id"], name: "index_transcripts_on_user_id"
   end
 

@@ -35,12 +35,11 @@ class SpeechAsyncRecognizeJob < ApplicationJob
 
     operation = speech.long_running_recognize config: config, audio: audio
     while !(operation.done?) do
-      puts "しばらくお待ちください"
       operation = request.get_operation(name: operation.name)
       puts "現在の進捗率は#{operation.metadata.progress_percent}％です"
-      sleep 10
+      transcript.update(progress_percent: operation.metadata.progress_percent)
+      sleep 0.5
     end
-    #operation.wait_until_done!
 
     raise operation.results.message if operation.error?
 
