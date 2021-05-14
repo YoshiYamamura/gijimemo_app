@@ -12,6 +12,7 @@ class Transcript < ApplicationRecord
     validates :transcript
     validates :status
     validates :voice_data, file_content_type: { allow: audiofile_mime_types, message: message_mime_types }
+    validates :audio_duration
   end
 
   def self.search(search)
