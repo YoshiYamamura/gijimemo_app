@@ -16,11 +16,13 @@
         <%= transcript.name %>
       </div>
       <div class='transcript-list-status'>
+        <% expected_time = transcript.created_at.since(transcript.audio_duration).localtime.strftime('%Y-%m-%d %H:%M') %>
         <% case transcript.status %>
           <% when 1 %>
             <%= '完了' %>
           <% when 0 %>
             <%= '変換中' %>
+            <progress class="transcript_progress" id="progress-id-<%= transcript.id %>" max="99">完了予想時刻：<%= expected_time %></progress>
           <% when -1 %>
             <%= 'エラー' %>
         <% end %>

@@ -269,3 +269,8 @@ p {
   color: gray;
   font-size: 14px;
 }
+
+/* ステータス表示、プログレスバー */
+.transcript_progress {
+  width: 120px;
+}
