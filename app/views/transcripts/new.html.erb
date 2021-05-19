@@ -30,6 +30,7 @@
         <%= f.select :number_of_people, options_for_select([['1人', 1], ['2人', 2], ['3人', 3], ['4人', 4], ['5人', 5], ['6人以上', 6]]) %>
       </div>
       <audio id="audio-player" controls></audio>
+      <input type="hidden" name="audio_duration" id="audio-duration">
       <%= f.submit "送信する", class: 'submit-btn' %>
     <% end %>
   </div>

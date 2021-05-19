@@ -2,21 +2,21 @@ function transcript() {
   
   const transcriptVoiceData = document.getElementById('transcript-voice-data');
   const audioPlayer = document.getElementById('audio-player');
-  const sampleRate = document.getElementById('sample-rate');
-  const sampleRateKhz = document.getElementById('sample-rate-khz');
+  const audioDuration =  document.getElementById('audio-duration');
 
-  //オーディオプレイヤー
+  //音声データ読み込み
   transcriptVoiceData.addEventListener('input', function(e){
     let file = e.target.files[0];
+    //オーディオプレイヤーへの挿入
     let blob = URL.createObjectURL(file);
     audioPlayer.setAttribute("src", blob);
+    //長さの取得送信
+    audioPlayer.addEventListener('loadedmetadata',function(audio) {
+      let audio_duration = audio.target.duration;
+      audioDuration.value = audio_duration;
+    });
   })
 
-  //サンプリングレートのkHz表示
-  sampleRate.addEventListener('keyup', function(){
-    let input = this.value;
-    sampleRateKhz.innerHTML = ` Hz(${input / 1000}kHz)` ;
-  })
 }
 if(document.URL.match(/transcripts\/new/)){
   window.addEventListener('load', transcript)
