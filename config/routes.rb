@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     end
   end
   resources :transcripts, only: [:new, :create, :show, :destroy]
+  resources :text_detections, only: [:new, :create, :show, :destroy]
   resources :profiles, only: [:show, :new, :create, :edit, :update]
 end
