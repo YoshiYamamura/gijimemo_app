@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_053225) do
+ActiveRecord::Schema.define(version: 2021_05_22_045253) do
 
   create_table "access_permits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "meeting_id"
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 2021_05_14_053225) do
     t.index ["user_id"], name: "index_reactions_on_user_id"
   end
 
+  create_table "text_detections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "text", null: false
+    t.integer "status", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_text_detections_on_user_id"
+  end
+
   create_table "transcripts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "transcript", null: false
     t.integer "status", null: false
@@ -122,5 +132,6 @@ ActiveRecord::Schema.define(version: 2021_05_14_053225) do
   add_foreign_key "profiles", "users"
   add_foreign_key "reactions", "meetings"
   add_foreign_key "reactions", "users"
+  add_foreign_key "text_detections", "users"
   add_foreign_key "transcripts", "users"
 end
